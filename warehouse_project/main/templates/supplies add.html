@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавление поставки</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .back-button-container {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        .button {
+            font-size: 20px;
+            padding: 10px 20px;
+            background-color: #000000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .confirm_button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 20px;
+            padding: 10px 20px;
+            background-color: #000000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Добавить поставку</h1>
+    <div class="back-button-container">
+        <button class="button" onclick="location.href='{% url 'supplies' %}'">Назад</button>
+    </div>
+    <p>А тут пока что ничего и нет, ХА</p>
+    <button class="confirm_button">Добавить</button>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поставка {{ supply_number }}</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .back-button-container {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        .button {
+            font-size: 20px;
+            padding: 10px 20px;
+            background-color: #000000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button-container {
+            flex-direction: column;
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .edit_button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 20px;
+            padding: 10px 20px;
+            background-color: #000000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Поставка №{{ supply_number }}</h1>
+    <div class="back-button-container">
+
+        <button class="button" onclick="location.href='{% url 'search' 'supplies' %}'">Назад</button>
+    </div>
+    <div class = "content">
+        <p>Номер поставки</p>
+        <p>Номер поставщика</p>
+        <p>Статус поставки</p>
+        <p>Дата заказа поставки</p>
+        <p>Дата поставки</p>
+        <p>Доп. Информация</p>
+        <p>Содержание поставки</p>
+        <table>
+        <thead>
+            <tr>
+                <th>Номер</th>
+                <th>Наименование</th>
+                <th>Количество</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Товар</td>
+                <td>10 шт.</td>
+            </tr>
+        </tbody>
+        </table>
+        <p>Сумма продажи</p>
+    </div>
+    <div class="button-container">
+        <button class="edit_button">Изменить</button>
+    <div>
+</body>
+</html>

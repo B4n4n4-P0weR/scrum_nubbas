@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список поставок</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .back-button-container {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        .button {
+            font-size: 20px;
+            padding: 10px 20px;
+            background-color: #000000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Заказы</h1>
+    <div class="back-button-container">
+        <button class="button" onclick="location.href='{% url 'sales' %}'">Назад</button>
+    </div>
+    <div class = "content">
+        <table>
+        <thead>
+            <tr>
+                <th>Номер</th>
+                <th>Наименование</th>
+                <th>Количество</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Товар</td>
+                <td>10 шт.</td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+</body>
+</html>
