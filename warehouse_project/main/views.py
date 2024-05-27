@@ -85,4 +85,4 @@ def product_add(request):
 
 def product_clear(request):
     Product.objects.all().delete()
-    return HttpResponse('Все продукты удалены')
+    return HttpResponse("<a href='http://127.0.0.1:8000' class='red'>Назад</a> Все продукты удалены")

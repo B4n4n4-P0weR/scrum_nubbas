@@ -28,13 +28,24 @@
             border-radius: 5px;
             cursor: pointer;
         }
+        /* Потом удалить, нужно для дебага */
         .red {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            text-decoration: none;
+            font-size: 12px;
+            padding: 10px 20px;
             background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
         .button-container {
             flex-direction: column;
             display: flex;
-            gap: 30px;
+            gap: 20px;
             justify-content: center;
             margin-top: 20px;
         }
@@ -44,6 +55,7 @@
     <h1>Поставки</h1>
     <div class="back-button-container">
         <button class="button" onclick="location.href='{% url 'home' %}'">Назад</button>
+
     </div>
 
     <div class="button-container">
@@ -53,7 +65,8 @@
         <button class="button" onclick="location.href='{% url 'supplier_requests' %}'">Заявки поставщику</button>
         <button class="button" onclick="location.href='{% url 'product_list' %}'">Список товаров</button>
         <button class="button" onclick="location.href='{% url 'product_add' %}'">Добавить товар</button>
-        <a href='../product/clear' class="red">Удалить все товары</button>
     </div>
+    <!-- Потом удалить, нужно для дебага -->
+    <a href='../product/clear' class="red">Удалить все товары</a>
 </body>
 </html>
