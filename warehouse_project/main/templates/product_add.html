@@ -1,0 +1,9 @@
+<form method="post">
+    <button onclick="location.href='{% url 'supplies' %}'">Назад</button>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Добавить товар</button>
+    {% if result %}
+    <br>{{ result }}
+    {% endif %}
+</form>

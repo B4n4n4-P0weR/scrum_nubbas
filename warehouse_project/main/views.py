@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.urls import reverse
-
+from .forms import ProductForm
+from .models import Product
 
 def home(request):
     return render(request, 'home.html')
@@ -63,3 +64,25 @@ def supplies_add(request):
 
 def supplier_requests(request):
     return render(request, 'supplier requests.html')
+
+def product_list(request):
+    products = Product.objects.all()  # Получаем все товары из базы данных
+    return render(request, 'product_list.html', {'products': products})
+
+def product_add(request):
+    result = None
+    
+    if request.method == 'POST':
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            result = f"Добавлено: {form.cleaned_data['name']} - {form.cleaned_data['price']} руб."
+            form = ProductForm()
+    else:
+        form = ProductForm()
+
+    return render(request, 'product_add.html', {'form': form, 'result': result})
+
+def product_clear(request):
+    Product.objects.all().delete()
+    return HttpResponse('Все продукты удалены')

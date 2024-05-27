@@ -1,0 +1,8 @@
+<ul>
+    <button onclick="location.href='{% url 'supplies' %}'">Назад</button>
+    {% for product in products %}
+        <li>{{ product.name }} - {{ product.price }} руб.</li>
+    {% empty %}
+    <h2>Список товаров пуст</h2>
+    {% endfor %}
+</ul>

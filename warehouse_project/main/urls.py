@@ -25,5 +25,9 @@ urlpatterns = [
     #отчёты
     path('reports/needful/', views.report_needful_stuff, name='report_needful_stuff'),
     path('reports/sold/', views.report_sold_stuff, name='report_sold_stuff'),
-    path('reports/stored/', views.report_stored_stuff, name='report_stored_stuff')
+    path('reports/stored/', views.report_stored_stuff, name='report_stored_stuff'),
+    #товары
+    path('product/list/', views.product_list, name='product_list'),
+    path('product/add/', views.product_add, name='product_add'),
+    path('product/clear/', views.product_clear)
 ]

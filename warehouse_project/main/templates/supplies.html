@@ -28,6 +28,9 @@
             border-radius: 5px;
             cursor: pointer;
         }
+        .red {
+            background-color: red;
+        }
         .button-container {
             flex-direction: column;
             display: flex;
@@ -48,6 +51,9 @@
         <button class="button" onclick="location.href='{% url 'search' 'supplies' %}'">Поиск</button>
         <button class="button" onclick="location.href='{% url 'supplies_add' %}'">Добавить поставку</button>
         <button class="button" onclick="location.href='{% url 'supplier_requests' %}'">Заявки поставщику</button>
+        <button class="button" onclick="location.href='{% url 'product_list' %}'">Список товаров</button>
+        <button class="button" onclick="location.href='{% url 'product_add' %}'">Добавить товар</button>
+        <a href='../product/clear' class="red">Удалить все товары</button>
     </div>
 </body>
 </html>
