@@ -26,7 +26,7 @@ def reports(request):
     return render(request, 'reports.html')
 
 def report_needful_stuff(request):
-    return render(request, 'report needful stuff.html.html')
+    return render(request, 'report needful stuff.html')
 
 def report_sold_stuff(request):
     return render(request, 'report sold stuff.html')
