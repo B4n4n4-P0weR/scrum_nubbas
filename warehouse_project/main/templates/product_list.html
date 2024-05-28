@@ -46,27 +46,32 @@
     <div class="back-button-container">
             <button class="button" onclick="location.href='{% url 'supplies' %}'">Назад</button>
     </div>
+    {% if products|length > 0 %}
+    <h2>Список товаров</h2>
     <div class = "content">
         <table>
             <thead>
                 <tr>
-                    <th>Номер</th>
+                    <th>Артикул</th>
                     <th>Наименование</th>
+                    <th>Производитель</th>
                     <th>Цена</th>
                 </tr>
             </thead>
             <tbody>
+                {% for product in products %}
                 <tr>
-                    {% for product in products %}
-                    <td>{{ product.id }}</td>
+                    <td>{{ product.code }}</td>
                     <td>{{ product.name }}</td>
+                    <td>{{ product.manufacturer }}</td>
                     <td>{{ product.price }} руб.</td>
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
-    {% empty %}
+    {% else %}
     <h2>Список товаров пуст</h2>
-    {% endfor %}
+    {% endif %}
 </body>
 </html>
