@@ -5,10 +5,10 @@ from .models import Product
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ["code", "name", "manufacturer", "price"]
+        fields = ["code", "title", "manufacturer", "price"]
         labels = {
             "code": "Артикул",
-            "name": "Наименование",
+            "title": "Наименование",
             "manufacturer": "Производитель",
             "price": "Цена",
         }

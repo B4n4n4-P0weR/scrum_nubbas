@@ -95,7 +95,7 @@ def product_add(request):
         form = ProductForm(request.POST)
         if form.is_valid():
             form.save()
-            result = f"Добавлено: {form.cleaned_data['name']} - {form.cleaned_data['price']} руб."
+            result = f"Добавлено: {form.cleaned_data['title']} - {form.cleaned_data['price']} руб."
             form = ProductForm()
     else:
         form = ProductForm()
