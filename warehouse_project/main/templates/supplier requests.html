@@ -27,6 +27,12 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            text-align: right;
+        }
+        .link {
+            color: black;
+            cursor: pointer;
+            text-decoration: none;
         }
         table {
             width: 100%;
@@ -35,7 +41,7 @@
         th, td {
             border: 1px solid black;
             padding: 8px;
-            text-align: left;
+            text-align: right;
         }
         th {
             background-color: #f2f2f2;
@@ -52,15 +58,17 @@
         <thead>
             <tr>
                 <th>Номер</th>
-                <th>Наименование</th>
-                <th>Количество</th>
+                <th>Поставщик</th>
+                <th>Сумма поставки</th>
+                <th>Ссылка</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td>1</td>
-                <td>Товар</td>
-                <td>10 шт.</td>
+                <td>ООО "Поставка"</td>
+                <td>Многа</td>
+                <td><a class="link" href='http://127.0.0.1:8000/supplies/'>Открыть</a></td>
             </tr>
         </tbody>
         </table>
