@@ -98,14 +98,6 @@ def supplies_add(request):
     return render(request, 'supplies add.html', {'form': form, 'result': result})
 
 
-def supplier_requests(request):
-    return render(request, 'supplier requests.html')
-
-
-def supplier_request_add(request):
-    return render(request, 'supplier request add.html')
-
-
 def product_list(request):
     products = Product.objects.all()  # Получаем все товары из базы данных
     return render(request, 'product_list.html', {'products': products})

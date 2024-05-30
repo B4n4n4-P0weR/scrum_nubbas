@@ -20,9 +20,6 @@ urlpatterns = [
     #добавление поставок и заказов
     path('sales/add/', views.sales_add, name='sales_add'),
     path('supplies/add/', views.supplies_add, name='supplies_add'),
-    #заявки поставщику
-    path('supplier_requests/', views.supplier_requests, name='supplier_requests'),
-    path('supplier_requests/add', views.supplier_request_add, name='supplier_request_add'),
     #отчёты
     path('reports/needful/', views.report_needful_stuff, name='report_needful_stuff'),
     path('reports/sold/', views.report_sold_stuff, name='report_sold_stuff'),
