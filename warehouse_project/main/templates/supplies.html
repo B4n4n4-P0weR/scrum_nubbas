@@ -68,6 +68,7 @@
         <button class="button" onclick="location.href='{% url 'product_add' %}'">Добавить товар</button>
     </div>
     <!-- Потом удалить, нужно для дебага -->
-    <a href='../product/clear' class="red">Удалить все товары</a>
+    <button class="red" onclick="location.href='{% url 'debug_deleted' %}'">Удаление</button>
+
 </body>
 </html>

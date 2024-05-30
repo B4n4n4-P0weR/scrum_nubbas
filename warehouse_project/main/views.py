@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.urls import reverse
-from .forms import ProductForm
-from .models import Product
+from .forms import *
+from .models import *
 
 
 def home(request):
@@ -79,12 +79,13 @@ def supplies_add(request):
 def supplier_requests(request):
     return render(request, 'supplier requests.html')
 
+
 def supplier_request_add(request):
     return render(request, 'supplier request add.html')
 
 
 def product_list(request):
-    products = Product.objects.all() # Получаем все товары из базы данных
+    products = Product.objects.all()  # Получаем все товары из базы данных
     return render(request, 'product_list.html', {'products': products})
 
 
@@ -103,6 +104,51 @@ def product_add(request):
     return render(request, 'product_add.html', {'form': form, 'result': result})
 
 
+def sale_add(request):
+    result = None
+
+    if request.method == 'POST':
+        form = SaleForm(request.POST)
+        if form.is_valid():
+            form.save()
+            result = f"Добавлено: {form.cleaned_data['code']} - {form.cleaned_data['totalPrice']} руб."
+            form = SaleForm()
+    else:
+        form = SaleForm()
+
+    return render(request, 'sales add.html', {'form': form, 'result': result})
+
+
+def supply_add(request):
+    result = None
+
+    if request.method == 'POST':
+        form = SupplyForm(request.POST)
+        if form.is_valid():
+            form.save()
+            result = f"Добавлено: {form.cleaned_data['code']} - {form.cleaned_data['totalPrice']} руб."
+            form = SupplyForm()
+    else:
+        form = SupplyForm()
+
+    return render(request, 'supplies add.html', {'form': form, 'result': result})
+
+
+#Для дебага
+def debug_deleted(request):
+    return render(request, 'debug delete.html')
+
+
 def product_clear(request):
     Product.objects.all().delete()
     return HttpResponse("<a href='http://127.0.0.1:8000/supplies/' class='red'>Назад</a> Все продукты удалены")
+
+
+def sale_clear(request):
+    Sale.objects.all().delete()
+    return HttpResponse("<a href='http://127.0.0.1:8000/supplies/' class='red'>Назад</a> Все продажи удалены")
+
+
+def supply_clear(request):
+    Supply.objects.all().delete()
+    return HttpResponse("<a href='http://127.0.0.1:8000/supplies/' class='red'>Назад</a> Все поставки удалены")

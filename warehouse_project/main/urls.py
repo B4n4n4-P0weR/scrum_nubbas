@@ -30,5 +30,13 @@ urlpatterns = [
     #товары
     path('product/list/', views.product_list, name='product_list'),
     path('product/add/', views.product_add, name='product_add'),
-    path('product/clear/', views.product_clear)
+
+
+
+    #удаление (для дебага)
+    path('clear', views.debug_deleted, name='debug_deleted'),
+    path('clear/product', views.product_clear, name='product_clear'),
+    path('clear/sale_clear', views.sale_clear, name='sale_clear'),
+    path('clear/supply_clear', views.supply_clear, name='supply_clear')
+
 ]
