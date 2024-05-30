@@ -43,27 +43,41 @@
     </style>
 </head>
 <body>
-    <h1>Поставки</h1>
     <div class="back-button-container">
         <button class="button" onclick="location.href='{% url 'supplies' %}'">Назад</button>
     </div>
+    {% if supplies|length > 0 %}
+    <h2>Список поставок</h2>
     <div class = "content">
         <table>
-        <thead>
-            <tr>
-                <th>Номер</th>
-                <th>Наименование</th>
-                <th>Количество</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>Товар</td>
-                <td>10 шт.</td>
-            </tr>
-        </tbody>
+            <thead>
+                <tr>
+                    <th>Артикул</th>
+                    <th>supplier</th>
+                    <th>supplyStatus</th>
+                    <th>orderDate</th>
+                    <th>receivingDate</th>
+                    <th>extraInfo</th>
+                    <th>totalPrice</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for supply in supplies %}
+                <tr>
+                    <td>{{ supply.code }}</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>{{ supply.orderDate }}</td>
+                    <td>{{ supply.receivingDate }}</td>
+                    <td>{{ supply.extraInfo }}</td>
+                    <td>{{ supply.totalPrice }} руб.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
         </table>
     </div>
+    {% else %}
+    <h2>Список поставок пуст</h2>
+    {% endif %}
 </body>
 </html>

@@ -43,27 +43,35 @@
     </style>
 </head>
 <body>
-    <h1>Заказы</h1>
     <div class="back-button-container">
         <button class="button" onclick="location.href='{% url 'sales' %}'">Назад</button>
     </div>
+    {% if sales|length > 0 %}
+    <h2>Список заказов</h2>
     <div class = "content">
         <table>
-        <thead>
-            <tr>
-                <th>Номер</th>
-                <th>Наименование</th>
-                <th>Количество</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>Товар</td>
-                <td>10 шт.</td>
-            </tr>
-        </tbody>
+            <thead>
+                <tr>
+                    <th>Артикул</th>
+                    <th>saleDate</th>
+                    <th>extraInfo</th>
+                    <th>totalPrice</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for sale in sales %}
+                <tr>
+                    <td>{{ sale.code }}</td>
+                    <td>{{ sale.saleDate }}</td>
+                    <td>{{ sale.extraInfo }}</td>
+                    <td>{{ sale.totalPrice }} руб.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
         </table>
     </div>
+    {% else %}
+    <h2>Список заказов пуст</h2>
+    {% endif %}
 </body>
 </html>

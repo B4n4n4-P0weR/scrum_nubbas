@@ -44,10 +44,10 @@
 </head>
 <body>
     <h1>Добавить товар</h1>
-    <form method="post">
-        <div class="back-button-container">
+    <div class="back-button-container">
             <button class="button" onclick="location.href='{% url 'supplies' %}'">Назад</button>
-        </div>
+    </div>
+    <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button class="confirm_button" type="submit">Добавить товар</button>

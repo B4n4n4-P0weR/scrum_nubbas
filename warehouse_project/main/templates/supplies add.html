@@ -45,9 +45,15 @@
 <body>
     <h1>Добавить поставку</h1>
     <div class="back-button-container">
-        <button class="button" onclick="location.href='{% url 'supplies' %}'">Назад</button>
+            <button class="button" onclick="location.href='{% url 'supplies' %}'">Назад</button>
     </div>
-    <p>А тут пока что ничего и нет, ХА</p>
-    <button class="confirm_button">Добавить</button>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="confirm_button" type="submit">Добавить </button>
+        {% if result %}
+            <br>{{ result }}
+        {% endif %}
+    </form>
 </body>
 </html>

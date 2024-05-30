@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Добавление товаров</title>
+    <title>Удаление</title>
     <style>
         body {
             display: flex;
@@ -22,32 +22,40 @@
         .button {
             font-size: 20px;
             padding: 10px 20px;
-            background-color: #000000;
+            background-color: red;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
-        .confirm_button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
+        .red {
+            text-decoration: none;
             font-size: 20px;
             padding: 10px 20px;
-            background-color: #000000;
+            background-color: red;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+        }
+        .button-container {
+            flex-direction: column;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <h1>Добавить поставку</h1>
+    <h1>Удаление</h1>
     <div class="back-button-container">
         <button class="button" onclick="location.href='{% url 'supplies' %}'">Назад</button>
     </div>
-    <p>А тут пока что ничего и нет, ХА</p>
-    <button class="confirm_button">Добавить</button>
+    <div class="button-container">
+        <button class="red" onclick="location.href='{% url 'product_clear' %}'">Удалить все товары</button>
+        <button class="red" onclick="location.href='{% url 'sale_clear' %}'">Удалить все продажи</button>
+        <button class="red" onclick="location.href='{% url 'supply_clear' %}'">Удалить все поставки</button>
+    </div>
 </body>
 </html>

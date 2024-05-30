@@ -20,9 +20,6 @@ urlpatterns = [
     #добавление поставок и заказов
     path('sales/add/', views.sales_add, name='sales_add'),
     path('supplies/add/', views.supplies_add, name='supplies_add'),
-    #заявки поставщику
-    path('supplier_requests/', views.supplier_requests, name='supplier_requests'),
-    path('supplier_requests/add', views.supplier_request_add, name='supplier_request_add'),
     #отчёты
     path('reports/needful/', views.report_needful_stuff, name='report_needful_stuff'),
     path('reports/sold/', views.report_sold_stuff, name='report_sold_stuff'),
@@ -30,5 +27,13 @@ urlpatterns = [
     #товары
     path('product/list/', views.product_list, name='product_list'),
     path('product/add/', views.product_add, name='product_add'),
-    path('product/clear/', views.product_clear)
+
+
+
+    #удаление (для дебага)
+    path('clear', views.debug_deleted, name='debug_deleted'),
+    path('clear/product', views.product_clear, name='product_clear'),
+    path('clear/sale_clear', views.sale_clear, name='sale_clear'),
+    path('clear/supply_clear', views.supply_clear, name='supply_clear')
+
 ]
