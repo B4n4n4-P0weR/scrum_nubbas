@@ -69,11 +69,33 @@ def supplies_list(request):
 
 
 def sales_add(request):
-    return render(request, 'sales add.html')
+    result = None
+
+    if request.method == 'POST':
+        form = SaleForm(request.POST)
+        if form.is_valid():
+            form.save()
+            result = f"Добавлено: {form.cleaned_data['code']} - {form.cleaned_data['totalPrice']} руб."
+            form = SaleForm()
+    else:
+        form = SaleForm()
+
+    return render(request, 'sales add.html', {'form': form, 'result': result})
 
 
 def supplies_add(request):
-    return render(request, 'supplies add.html')
+    result = None
+
+    if request.method == 'POST':
+        form = SupplyForm(request.POST)
+        if form.is_valid():
+            form.save()
+            result = f"Добавлено: {form.cleaned_data['code']} - {form.cleaned_data['totalPrice']} руб."
+            form = SupplyForm()
+    else:
+        form = SupplyForm()
+
+    return render(request, 'supplies add.html', {'form': form, 'result': result})
 
 
 def supplier_requests(request):
@@ -102,37 +124,6 @@ def product_add(request):
         form = ProductForm()
 
     return render(request, 'product_add.html', {'form': form, 'result': result})
-
-
-def sale_add(request):
-    result = None
-
-    if request.method == 'POST':
-        form = SaleForm(request.POST)
-        if form.is_valid():
-            form.save()
-            result = f"Добавлено: {form.cleaned_data['code']} - {form.cleaned_data['totalPrice']} руб."
-            form = SaleForm()
-    else:
-        form = SaleForm()
-
-    return render(request, 'sales add.html', {'form': form, 'result': result})
-
-
-def supply_add(request):
-    result = None
-
-    if request.method == 'POST':
-        form = SupplyForm(request.POST)
-        if form.is_valid():
-            form.save()
-            result = f"Добавлено: {form.cleaned_data['code']} - {form.cleaned_data['totalPrice']} руб."
-            form = SupplyForm()
-    else:
-        form = SupplyForm()
-
-    return render(request, 'supplies add.html', {'form': form, 'result': result})
-
 
 #Для дебага
 def debug_deleted(request):
