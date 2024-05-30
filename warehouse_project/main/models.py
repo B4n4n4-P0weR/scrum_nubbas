@@ -30,15 +30,18 @@ class Supply(models.Model):
     orderDate = models.DateTimeField()
     receivingDate = models.DateTimeField()
 
+
 class ContentOfSupply(models.Model):
     id = models.AutoField(primary_key=True)
     supplyId = models.ForeignKey(Supply, on_delete=models.CASCADE)
     productId = models.ForeignKey(Product, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
+
 class Shipment(models.Model):
     id = models.AutoField(primary_key=True)
     shipDate = models.DateTimeField()
+
 
 class ContentOfShipment(models.Model):
     id = models.AutoField(primary_key=True)
@@ -46,9 +49,10 @@ class ContentOfShipment(models.Model):
     productId = models.ForeignKey(Product, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
+
 class ProductLocations(models.Model):
     id = models.AutoField(primary_key=True)
-    tittle = models.CharField(max_length=255, default='')
+    title = models.CharField(max_length=255, default='')
 
 
 class ProductsInStock(models.Model):

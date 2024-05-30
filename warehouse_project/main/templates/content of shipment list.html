@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Товары на складе</title>
+    <title>Добавление товаров</title>
     <style>
         body {
             display: flex;
@@ -44,32 +44,32 @@
 </head>
 <body>
     <div class="back-button-container">
-        <button class="button" onclick="location.href='{% url 'reports' %}'">Назад</button>
+            <button class="button" onclick="location.href='{% url 'sales' %}'">Назад</button>
     </div>
-    {% if productsInStock|length > 0 %}
-    <h2>Товары на складе</h2>
+    {% if content_of_shipment|length > 0 %}
+    <h2>Список товаров</h2>
     <div class = "content">
         <table>
             <thead>
                 <tr>
-                    <th>productId</th>
-                    <th>amount</th>
-                    <th>locationId</th>
+                    <th>Id отгрузки</th>
+                    <th>Id продукта</th>
+                    <th>Количество</th>
                 </tr>
             </thead>
             <tbody>
-                {% for product in productsInStock %}
+                {% for content in content_of_shipment %}
                 <tr>
-                    <td>{{ product.productId }}</td>
-                    <td>{{ product.amount }}</td>
-                    <td>{{ product.locationId }}</td>
+                    <td>{{ content.shipmentId }}</td>
+                    <td>{{ content.productId }}</td>
+                    <td>{{ content.amount }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
     {% else %}
-    <h2>На складе нет товаров</h2>
+    <h2>Список товаров пуст</h2>
     {% endif %}
 </body>
 </html>

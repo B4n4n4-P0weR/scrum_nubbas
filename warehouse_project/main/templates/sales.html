@@ -61,6 +61,38 @@
             background-color: #ddd;
             color: black;
         }
+        .main-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            width: 100%;
+        }
+        .left-buttons,
+        .right-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .center-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* Потом удалить, нужно для дебага */
+        .red {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            text-decoration: none;
+            font-size: 12px;
+            padding: 10px 20px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -71,12 +103,25 @@
         <a href='{% url 'reports' %}'">Отчёты</a>
     </div>
     <div class="content">
-            <h1>Продажи</h1>
-        <div class="button-container">
-            <button class="button" onclick="location.href='{% url 'search' 'sales' %}'">Поиск</button>
-            <button class="button" onclick="location.href='{% url 'sales_list' %}'">Список заказов</button>
-            <button class="button" onclick="location.href='{% url 'sales_add' %}'">Добавить заказ</button>
+        <h1>Продажи</h1>
+        <!-- Потом переместить (так пока что удобнее) -->
+        <div class="main-container">
+            <div class="left-buttons">
+                <button class="button" onclick="location.href='{% url 'sales_list' %}'">Список заказов</button>
+                <button class="button" onclick="location.href='{% url 'shipment_list' %}'">Список отгрузкок</button>
+                <button class="button" onclick="location.href='{% url 'content_of_shipment_list' %}'">Список содержаний отгрузки</button>
+            </div>
+            <div class="center-button">
+                <button class="button" onclick="location.href='{% url 'search' 'sales' %}'">Поиск</button>
+            </div>
+            <div class="right-buttons">
+                <button class="button" onclick="location.href='{% url 'sales_add' %}'">Добавить заказ</button>
+                <button class="button" onclick="location.href='{% url 'shipment_add' %}'">Добавить отгрузку</button>
+                <button class="button" onclick="location.href='{% url 'content_of_shipment_add' %}'">Добавить содержание отгрузки</button>
+            </div>
         </div>
     </div>
+    <!-- Потом удалить, нужно для дебага -->
+    <button class="red" onclick="location.href='{% url 'debug_deleted' %}'">Удаление</button>
 </body>
 </html>
