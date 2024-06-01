@@ -36,20 +36,17 @@ class SupplierForm(forms.ModelForm):
 class SupplyForm(forms.ModelForm):
     class Meta:
         model = Supply
-        fields = ["supplierId", "orderDate", "receivingDate"]
+        fields = ["supplierId"]
         labels = {
-            "supplierId": "Поставщик",
-            "orderDate": "Дата заказа",
-            "receivingDate": "Дата получения"
+            "supplierId": "Поставщик"
         }
 
 class ContentOfSupplyForm(forms.ModelForm):
     class Meta:
         model = ContentOfSupply
-        fields = ["supplyId", "productId", "amount"]
+        fields = ["productId", "amount"]
         labels = {
-            "supplyId": "Id поставки",
-            "productId": "Id продукта",
+            "productId": "Товар",
             "amount": "Количество"
         }
 

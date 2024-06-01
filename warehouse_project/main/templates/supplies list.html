@@ -52,25 +52,21 @@
         <table>
             <thead>
                 <tr>
-                    <th>Артикул</th>
-                    <th>supplier</th>
-                    <th>supplyStatus</th>
-                    <th>orderDate</th>
-                    <th>receivingDate</th>
-                    <th>extraInfo</th>
-                    <th>totalPrice</th>
+                    <th>Id</th>
+                    <th>Поставщик</th>
+                    <th>Время заказа</th>
+                    <th>Время получения</th>
+                    <th>Кнопка</th>
                 </tr>
             </thead>
             <tbody>
                 {% for supply in supplies %}
                 <tr>
-                    <td>{{ supply.code }}</td>
-                    <td>-</td>
-                    <td>-</td>
+                    <td>{{ supply.id }}</td>
+                    <td>{{ supply.supplierId }}</td>
                     <td>{{ supply.orderDate }}</td>
                     <td>{{ supply.receivingDate }}</td>
-                    <td>{{ supply.extraInfo }}</td>
-                    <td>{{ supply.totalPrice }} руб.</td>
+                    <td><button class="button" onclick="location.href='{% url 'supply_detail' supply_number=supply.id %}'">Открыть</button></td>
                 </tr>
                 {% endfor %}
             </tbody>

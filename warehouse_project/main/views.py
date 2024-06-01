@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.urls import reverse
 from .forms import *
 from .models import *
+from django.forms import formset_factory
 
 
 def home(request):
@@ -66,14 +67,27 @@ def supplies_add(request):
 
     if request.method == 'POST':
         form = SupplyForm(request.POST)
-        if form.is_valid():
-            form.save()
-            result = f"Добавлено: {form.cleaned_data['supplierId']} - {form.cleaned_data['orderDate']}"
+        Formset = formset_factory(ContentOfSupplyForm)
+        formset = Formset(request.POST)
+        if form.is_valid() and formset.is_valid():
+            supply = form.save()
+            amount = save_supply_content(formset, supply)
+            result = f"Добавлена поставка от {form.cleaned_data['supplierId']} - количество наименований {amount}"
             form = SupplyForm()
+            formset = formset_factory(ContentOfSupplyForm)
     else:
         form = SupplyForm()
+        formset = formset_factory(ContentOfSupplyForm)
 
-    return render(request, 'supplies add.html', {'form': form, 'result': result})
+    return render(request, 'supplies add.html', {'form': form, 'result': result, 'formset': formset})
+
+
+def save_supply_content(formset, supply):
+    for form in formset:
+        content_of_supply = form.save(commit=False)
+        content_of_supply.supplyId = supply
+        content_of_supply.save()
+    return len(formset)
 
 
 def content_of_supply_add(request):
@@ -204,9 +218,14 @@ def search(request, search_type):
     }
     return render(request, 'search.html', context)
 
-
+from django.db.models import F
+from django.db.models import Sum
 def supply_detail(request, supply_number):
-    context = {'supply_number': supply_number}
+    supply = Supply.objects.get(pk=supply_number)
+    supply_content = ContentOfSupply.objects.filter(supplyId=supply_number)
+    sum = supply_content.aggregate(total_price=Sum(F('productId__price') * F('amount')))['total_price']
+    
+    context = {'supply_number': supply_number, "supply": supply, "supply_content": supply_content, "sum": sum}
     return render(request, 'supply one.html', context)
 
 
