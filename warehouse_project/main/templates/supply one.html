@@ -64,34 +64,29 @@
 <body>
     <h1>Поставка №{{ supply_number }}</h1>
     <div class="back-button-container">
-
-        <button class="button" onclick="location.href='{% url 'search' 'supplies' %}'">Назад</button>
+        <button class="button" onclick="location.href='{% url 'supplies_list' %}'">Назад</button>
     </div>
     <div class = "content">
-        <p>Номер поставки</p>
-        <p>Номер поставщика</p>
-        <p>Статус поставки</p>
-        <p>Дата заказа поставки</p>
-        <p>Дата поставки</p>
-        <p>Доп. Информация</p>
-        <p>Содержание поставки</p>
+        <p>Поставщик: {{ supply.supplierId }}</p>
+        <p>Дата заказа: {{ supply.orderDate }}</p>
+        <p>Дата получения: {{ supply.receivingDate }}</p>
         <table>
         <thead>
             <tr>
-                <th>Номер</th>
                 <th>Наименование</th>
                 <th>Количество</th>
             </tr>
         </thead>
         <tbody>
+            {% for content in supply_content %}
             <tr>
-                <td>1</td>
-                <td>Товар</td>
-                <td>10 шт.</td>
+                <td>{{ content.productId }}</td>
+                <td>{{ content.amount }}</td>
             </tr>
+            {% endfor %}
         </tbody>
         </table>
-        <p>Сумма продажи</p>
+        <p>Сумма поставки: {{ sum }} руб.</p>
     </div>
     <div class="button-container">
         <button class="edit_button">Изменить</button>

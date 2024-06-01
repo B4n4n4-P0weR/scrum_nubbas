@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Список поставок</title>
+    <title>Добавление товаров</title>
     <style>
         body {
             display: flex;
@@ -44,36 +44,28 @@
 </head>
 <body>
     <div class="back-button-container">
-        <button class="button" onclick="location.href='{% url 'supplies' %}'">Назад</button>
+            <button class="button" onclick="location.href='{% url 'supplies' %}'">Назад</button>
     </div>
-    {% if supplies|length > 0 %}
-    <h2>Список поставок</h2>
+    {% if product_locations|length > 0 %}
+    <h2>Список помещений</h2>
     <div class = "content">
         <table>
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Поставщик</th>
-                    <th>Время заказа</th>
-                    <th>Время получения</th>
-                    <th>Кнопка</th>
+                    <th>Наименование</th>
                 </tr>
             </thead>
             <tbody>
-                {% for supply in supplies %}
+                {% for product_location in product_locations %}
                 <tr>
-                    <td>{{ supply.id }}</td>
-                    <td>{{ supply.supplierId }}</td>
-                    <td>{{ supply.orderDate }}</td>
-                    <td>{{ supply.receivingDate }}</td>
-                    <td><button class="button" onclick="location.href='{% url 'supply_detail' supply_number=supply.id %}'">Открыть</button></td>
+                    <td>{{ product_location.title }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
     {% else %}
-    <h2>Список поставок пуст</h2>
+    <h2>Список товаров пуст</h2>
     {% endif %}
 </body>
 </html>

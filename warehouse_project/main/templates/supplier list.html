@@ -46,34 +46,32 @@
     <div class="back-button-container">
         <button class="button" onclick="location.href='{% url 'supplies' %}'">Назад</button>
     </div>
-    {% if supplies|length > 0 %}
+    {% if suppliers|length > 0 %}
     <h2>Список поставок</h2>
     <div class = "content">
         <table>
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Поставщик</th>
-                    <th>Время заказа</th>
-                    <th>Время получения</th>
-                    <th>Кнопка</th>
+                    <th>title</th>
+                    <th>phone</th>
+                    <th>address</th>
+                    <th>director</th>
                 </tr>
             </thead>
             <tbody>
-                {% for supply in supplies %}
+                {% for supplier in suppliers %}
                 <tr>
-                    <td>{{ supply.id }}</td>
-                    <td>{{ supply.supplierId }}</td>
-                    <td>{{ supply.orderDate }}</td>
-                    <td>{{ supply.receivingDate }}</td>
-                    <td><button class="button" onclick="location.href='{% url 'supply_detail' supply_number=supply.id %}'">Открыть</button></td>
+                    <td>{{ supplier.title }}</td>
+                    <td>{{ supplier.phone }}</td>
+                    <td>{{ supplier.address }}</td>
+                    <td>{{ supplier.director }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
     {% else %}
-    <h2>Список поставок пуст</h2>
+    <h2>Список поставщиков пуст</h2>
     {% endif %}
 </body>
 </html>

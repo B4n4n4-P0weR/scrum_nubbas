@@ -1,7 +1,6 @@
 from django import forms
 from .models import *
 
-
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
@@ -13,27 +12,77 @@ class ProductForm(forms.ModelForm):
             "price": "Цена",
         }
 
-
 class SaleForm(forms.ModelForm):
     class Meta:
         model = Sale
-        fields = ["code", "saleDate", "extraInfo", "totalPrice"]
+        fields = ["saleDate", "productId", "amount"]
         labels = {
-            "code": "Артикул",
             "saleDate": "Дата продажи",
-            "extraInfo": "Доп. Информация",
-            "totalPrice": "Сумма продажи",
+            "productId": "Id продукта",
+            "amount": "Количество",
         }
 
+class SupplierForm(forms.ModelForm):
+    class Meta:
+        model = Supplier
+        fields = ["title", "phone", "address", "director"]
+        labels = {
+            "title": "Наименование",
+            "phone": "Телефон",
+            "address": "Адрес",
+            "director": "Руководитель"
+        }
 
 class SupplyForm(forms.ModelForm):
     class Meta:
         model = Supply
-        fields = ["code", "orderDate", "receivingDate", "extraInfo", "totalPrice"]
+        fields = ["supplierId"]
         labels = {
-            "code": "Артикул",
-            "orderDate": "Дата заказа",
-            "receivingDate": "Дата получения",
-            "extraInfo": "Доп. Информация",
-            "totalPrice": "Сумма поставки",
+            "supplierId": "Поставщик"
         }
+
+class ContentOfSupplyForm(forms.ModelForm):
+    class Meta:
+        model = ContentOfSupply
+        fields = ["productId", "amount"]
+        labels = {
+            "productId": "Товар",
+            "amount": "Количество"
+        }
+
+class ShipmentForm(forms.ModelForm):
+    class Meta:
+        model = Shipment
+        fields = ["shipDate"]
+        labels = {
+            "shipDate": "Дата отгрузки"
+        }
+
+class ContentOfShipmentForm(forms.ModelForm):
+    class Meta:
+        model = ContentOfShipment
+        fields = ["shipmentId", "productId", "amount"]
+        labels = {
+            "shipmentId": "Id отгрузки",
+            "productId": "Id продукта",
+            "amount": "Количество"
+        }
+
+class ProductLocationsForm(forms.ModelForm):
+    class Meta:
+        model = ProductLocations
+        fields = ["title"]
+        labels = {
+            "title": "Наименование (склад/торговое помещение)"
+        }
+
+class ProductsInStockForm(forms.ModelForm):
+        class Meta:
+            model = ProductsInStock
+            fields = ["productId", "amount", "locationId"]
+            labels = {
+                "productId": "Id продукта",
+                "amount": "Количество",
+                "saleDate": "Id расположения"
+            }
+

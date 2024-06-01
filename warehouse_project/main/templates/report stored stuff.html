@@ -28,26 +28,48 @@
             border-radius: 5px;
             cursor: pointer;
         }
-        .confirm_button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            font-size: 20px;
-            padding: 10px 20px;
-            background-color: #000000;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
         }
     </style>
 </head>
 <body>
-    <h1>Товары на складе</h1>
     <div class="back-button-container">
         <button class="button" onclick="location.href='{% url 'reports' %}'">Назад</button>
     </div>
-    <p>А тут пока что ничего и нет, ХА</p>
-    <button class="confirm_button">Сформировать</button>
+    {% if productsInStock|length > 0 %}
+    <h2>Товары на складе</h2>
+    <div class = "content">
+        <table>
+            <thead>
+                <tr>
+                    <th>productId</th>
+                    <th>amount</th>
+                    <th>locationId</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in productsInStock %}
+                <tr>
+                    <td>{{ product.productId }}</td>
+                    <td>{{ product.amount }}</td>
+                    <td>{{ product.locationId }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <h2>На складе нет товаров</h2>
+    {% endif %}
 </body>
 </html>

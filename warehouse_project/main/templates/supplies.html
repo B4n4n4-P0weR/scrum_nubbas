@@ -49,21 +49,51 @@
             justify-content: center;
             margin-top: 20px;
         }
+        .main-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            width: 100%;
+        }
+        .left-buttons,
+        .right-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .center-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     </style>
 </head>
 <body>
     <h1>Поставки</h1>
     <div class="back-button-container">
         <button class="button" onclick="location.href='{% url 'home' %}'">Назад</button>
-
     </div>
 
-    <div class="button-container">
-        <button class="button" onclick="location.href='{% url 'search' 'supplies' %}'">Поиск</button>
-        <button class="button" onclick="location.href='{% url 'supplies_list' %}'">Список поставок</button>
-        <button class="button" onclick="location.href='{% url 'supplies_add' %}'">Добавить поставку</button>
-        <button class="button" onclick="location.href='{% url 'product_list' %}'">Список товаров</button>
-        <button class="button" onclick="location.href='{% url 'product_add' %}'">Добавить товар</button>
+    <!-- Потом переместить (так пока что удобнее) -->
+    <div class="main-container">
+        <div class="left-buttons">
+            <button class="button" onclick="location.href='{% url 'product_list' %}'">Список товаров</button>
+            <button class="button" onclick="location.href='{% url 'supplier_list' %}'">Список поставщиков</button>
+            <button class="button" onclick="location.href='{% url 'supplies_list' %}'">Список поставок</button>
+            <button class="button" onclick="location.href='{% url 'content_of_supply_list' %}'">Список содержания поставок</button>
+            <button class="button" onclick="location.href='{% url 'product_locations_list' %}'">Список  мест хранения</button>
+        </div>
+        <div class="center-button">
+            <button class="button" onclick="location.href='{% url 'search' 'supplies' %}'">Поиск</button>
+        </div>
+        <div class="right-buttons">
+            <button class="button" onclick="location.href='{% url 'product_add' %}'">Добавить товар</button>
+            <button class="button" onclick="location.href='{% url 'supplier_add' %}'">Добавить поставщика</button>
+            <button class="button" onclick="location.href='{% url 'supplies_add' %}'">Добавить поставку</button>
+            <button class="button" onclick="location.href='{% url 'content_of_supply_add' %}'">Добавить содержание поставки</button>
+            <button class="button" onclick="location.href='{% url 'product_locations_add' %}'">Добавить место хранения</button>
+        </div>
     </div>
     <!-- Потом удалить, нужно для дебага -->
     <button class="red" onclick="location.href='{% url 'debug_deleted' %}'">Удаление</button>

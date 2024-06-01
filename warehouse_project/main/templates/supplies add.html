@@ -1,59 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Добавление поставок</title>
     <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-        .back-button-container {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-        }
-        .button {
-            font-size: 20px;
-            padding: 10px 20px;
-            background-color: #000000;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .confirm_button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            font-size: 20px;
-            padding: 10px 20px;
-            background-color: #000000;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+      .back-button-container {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+      }
+      .button {
+        font-size: 20px;
+        padding: 10px 20px;
+        background-color: #000000;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .confirm_button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        font-size: 20px;
+        padding: 10px 20px;
+        background-color: #000000;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
     </style>
-</head>
-<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+  <body>
     <h1>Добавить поставку</h1>
     <div class="back-button-container">
-            <button class="button" onclick="location.href='{% url 'supplies' %}'">Назад</button>
+      <button class="button" onclick="location.href='{% url 'supplies' %}'">Назад</button>
     </div>
     <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="confirm_button" type="submit">Добавить </button>
-        {% if result %}
-            <br>{{ result }}
-        {% endif %}
+      {% csrf_token %}
+      {{ form.as_p }}
+      {{ formset.management_form }}
+      <div id="form_set">
+        {% for form in formset %}
+          <div class="form">{{ form.as_table }}</div>
+        {% endfor %}
+      </div>
+
+      <div id="empty_form" style="display:none">
+        <div class="form">
+            {{ formset.empty_form.as_table }}
+            <button onclick="removeDiv(this)">X</button>
+        </div>
+      </div>
+      <input type="button" value="Еще" id="add_more" />
+      <script>
+        function removeDiv(button) {
+            $(button).closest("div").remove();
+        }
+
+        $('#add_more').click(function () {
+          var form_idx = $('#id_form-TOTAL_FORMS').val()
+          $('#form_set').append(
+            $('#empty_form')
+              .html()
+              .replace(/__prefix__/g, form_idx)
+          )
+          $('#id_form-TOTAL_FORMS').val(parseInt(form_idx) + 1)
+        })
+      </script>
+
+      <button class="confirm_button" type="submit">Добавить</button>
+      {% if result %}
+        <br />{{ result }}
+      {% endif %}
     </form>
-</body>
+  </body>
 </html>

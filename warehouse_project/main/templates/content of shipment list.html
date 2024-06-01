@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Список поставок</title>
+    <title>Добавление товаров</title>
     <style>
         body {
             display: flex;
@@ -44,36 +44,32 @@
 </head>
 <body>
     <div class="back-button-container">
-        <button class="button" onclick="location.href='{% url 'supplies' %}'">Назад</button>
+            <button class="button" onclick="location.href='{% url 'sales' %}'">Назад</button>
     </div>
-    {% if supplies|length > 0 %}
-    <h2>Список поставок</h2>
+    {% if content_of_shipment|length > 0 %}
+    <h2>Список товаров</h2>
     <div class = "content">
         <table>
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Поставщик</th>
-                    <th>Время заказа</th>
-                    <th>Время получения</th>
-                    <th>Кнопка</th>
+                    <th>Id отгрузки</th>
+                    <th>Id продукта</th>
+                    <th>Количество</th>
                 </tr>
             </thead>
             <tbody>
-                {% for supply in supplies %}
+                {% for content in content_of_shipment %}
                 <tr>
-                    <td>{{ supply.id }}</td>
-                    <td>{{ supply.supplierId }}</td>
-                    <td>{{ supply.orderDate }}</td>
-                    <td>{{ supply.receivingDate }}</td>
-                    <td><button class="button" onclick="location.href='{% url 'supply_detail' supply_number=supply.id %}'">Открыть</button></td>
+                    <td>{{ content.shipmentId }}</td>
+                    <td>{{ content.productId }}</td>
+                    <td>{{ content.amount }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
     {% else %}
-    <h2>Список поставок пуст</h2>
+    <h2>Список товаров пуст</h2>
     {% endif %}
 </body>
 </html>
