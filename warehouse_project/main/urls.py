@@ -36,9 +36,6 @@ urlpatterns = [
     # содержания отгрузок
     path('shipment/content/add/', views.content_of_shipment_add, name='content_of_shipment_add'),
     path('shipment/content/list/', views.content_of_shipment_list, name='content_of_shipment_list'),
-    # место хранение товара
-    path('product_locations/add/', views.product_locations_add, name='product_locations_add'),
-    path('product_locations/list/', views.product_locations_list, name='product_locations_list'),
 
     # отчёты
     path('reports/needful/', views.report_needful_stuff, name='report_needful_stuff'),
@@ -54,6 +51,5 @@ urlpatterns = [
     path('clear/supply_clear', views.supply_clear, name='supply_clear'),
     path('clear/content_of_supply_clear', views.content_of_supply_clear, name='content_of_supply_clear'),
     path('clear/shipment_clear', views.shipment_clear, name='shipment_clear'),
-    path('clear/content_of_shipment_clear', views.content_of_shipment_clear, name='content_of_shipment_clear'),
-    path('clear/product_locations_clear', views.product_locations_clear, name='product_locations_clear')
+    path('clear/content_of_shipment_clear', views.content_of_shipment_clear, name='content_of_shipment_clear')
 ]

@@ -57,12 +57,7 @@ class ContentOfShipment(models.Model):
     amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
 
-class ProductLocations(models.Model):
-    id = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=255, default='')
-
-
 class ProductsInStock(models.Model):
     productId = models.ForeignKey(Product, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    locationId = models.ForeignKey(ProductLocations, on_delete=models.CASCADE)
+    warehouse = models.BooleanField(default=False)

@@ -96,10 +96,9 @@ def supply_collect(request, supply_id):
     if supply.receivingDate == None:
         supply.receivingDate = datetime.now()
         supply.save()
-        location = ProductLocations.objects.get(title='Склад')
     
         for content in ContentOfSupply.objects.filter(supplyId=supply):
-            stock = ProductsInStock.objects.get_or_create(productId=content.productId, locationId=location)[0]
+            stock = ProductsInStock.objects.get_or_create(productId=content.productId)[0]
             stock.amount += content.amount
             stock.save()
         result = 'Поставка получена'
@@ -152,21 +151,6 @@ def content_of_shipment_add(request):
     return render(request, 'content of shipment add.html', {'form': form, 'result': result})
 
 
-def product_locations_add(request):
-    result = None
-
-    if request.method == 'POST':
-        form = ProductLocationsForm(request.POST)
-        if form.is_valid():
-            form.save()
-            result = f"Добавлено: {form.cleaned_data['title']}"
-            form = ProductLocationsForm()
-    else:
-        form = ProductLocationsForm()
-
-    return render(request, 'product location add.html', {'form': form, 'result': result})
-
-
 # Списки
 def product_list(request):
     products = Product.objects.all()
@@ -199,11 +183,6 @@ def content_of_shipment_list(request):
     return render(request, 'content of shipment list.html', {'content_of_shipment': content_of_shipment})
 
 
-def product_locations_list(request):
-    product_locations = ProductLocations.objects.all()
-    return render(request, 'product locations list.html', {'product_locations': product_locations})
-
-
 # Отчёты
 def reports(request):
     return render(request, 'reports.html')
@@ -218,7 +197,7 @@ def report_sold_stuff(request):
 
 
 def report_stored_stuff(request):
-    productsInStock = ProductsInStock.objects.filter(locationId__title='Склад')
+    productsInStock = ProductsInStock.objects.filter()
     return render(request, 'report stored stuff.html', {'productsInStock': productsInStock})
 
 
@@ -268,7 +247,6 @@ def all_clear(request):
     ContentOfSupply.objects.all().delete()
     Shipment.objects.all().delete()
     ContentOfShipment.objects.all().delete()
-    ProductLocations.objects.all().delete()
     ProductsInStock.objects.all().delete()
     return HttpResponse("<a href='http://127.0.0.1:8000/clear'>Назад</a> Всё удалено")
 
@@ -301,11 +279,3 @@ def shipment_clear(request):
 def content_of_shipment_clear(request):
     ContentOfShipment.objects.all().delete()
     return HttpResponse("<a href='http://127.0.0.1:8000/clear'>Назад</a> Удалено")
-
-def product_locations_clear(request):
-    ProductLocations.objects.all().delete()
-    return HttpResponse("<a href='http://127.0.0.1:8000/clear'>Назад</a> Удалено")
-
-def product_locations_clear(request):
-    ProductLocations.objects.all().delete()
-    return HttpResponse("<a href='http://127.0.0.1:8000/clear'>Назад</a> Все места удалены")

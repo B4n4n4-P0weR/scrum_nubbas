@@ -68,18 +68,11 @@ class ContentOfShipmentForm(forms.ModelForm):
             "amount": "Количество"
         }
 
-class ProductLocationsForm(forms.ModelForm):
-    class Meta:
-        model = ProductLocations
-        fields = ["title"]
-        labels = {
-            "title": "Наименование (склад/торговое помещение)"
-        }
 
 class ProductsInStockForm(forms.ModelForm):
         class Meta:
             model = ProductsInStock
-            fields = ["productId", "amount", "locationId"]
+            fields = ["productId", "amount", "warehouse"]
             labels = {
                 "productId": "Id продукта",
                 "amount": "Количество",
