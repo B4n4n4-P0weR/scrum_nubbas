@@ -90,21 +90,6 @@ def save_supply_content(formset, supply):
     return len(formset)
 
 
-def content_of_supply_add(request):
-    result = None
-
-    if request.method == 'POST':
-        form = ContentOfSupplyForm(request.POST)
-        if form.is_valid():
-            form.save()
-            result = f"Добавлено: {form.cleaned_data['supplyId']} - {form.cleaned_data['productId']}"
-            form = ContentOfSupplyForm()
-    else:
-        form = ContentOfSupplyForm()
-
-    return render(request, 'content of supply add.html', {'form': form, 'result': result})
-
-
 def shipment_add(request):
     result = None
 
@@ -169,11 +154,6 @@ def supplier_list(request):
 def supplies_list(request):
     supply = Supply.objects.all()
     return render(request, 'supplies list.html', {'supplies': supply})
-
-
-def content_of_supply_list(request):
-    content_of_supply = ContentOfSupply.objects.all()
-    return render(request, 'content of supply list.html', {'content_of_supply': content_of_supply})
 
 
 def shipment_list(request):

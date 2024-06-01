@@ -28,9 +28,6 @@ urlpatterns = [
     # поставки
     path('supplies/add/', views.supplies_add, name='supplies_add'),
     path('supplies/list/', views.supplies_list, name='supplies_list'),
-    # содержания поставок
-    path('supplies/content/add/', views.content_of_supply_add, name='content_of_supply_add'),
-    path('supplies/content/list/', views.content_of_supply_list, name='content_of_supply_list'),
     # отгрузки
     path('shipment/add/', views.shipment_add, name='shipment_add'),
     path('shipment/list/', views.shipment_list, name='shipment_list'),
