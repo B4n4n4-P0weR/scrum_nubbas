@@ -90,6 +90,38 @@ def save_supply_content(formset, supply):
     return len(formset)
 
 
+def supply_collect(request, supply_id):
+    supply = Supply.objects.get(pk=supply_id)
+    result = "Поставка уже была получена"
+    if supply.receivingDate == None:
+        supply.receivingDate = datetime.now()
+        supply.save()
+        location = ProductLocations.objects.get(title='Склад')
+    
+        for content in ContentOfSupply.objects.filter(supplyId=supply):
+            stock = ProductsInStock.objects.get_or_create(productId=content.productId, locationId=location)[0]
+            stock.amount += content.amount
+            stock.save()
+        result = 'Поставка получена'
+    
+    return supply_detail(request, supply_id, result)
+    
+
+def content_of_supply_add(request):
+    result = None
+
+    if request.method == 'POST':
+        form = ContentOfSupplyForm(request.POST)
+        if form.is_valid():
+            form.save()
+            result = f"Добавлено: {form.cleaned_data['supplyId']} - {form.cleaned_data['productId']}"
+            form = ContentOfSupplyForm()
+    else:
+        form = ContentOfSupplyForm()
+
+    return render(request, 'content of supply add.html', {'form': form, 'result': result})
+
+
 def shipment_add(request):
     result = None
 
@@ -186,7 +218,7 @@ def report_sold_stuff(request):
 
 
 def report_stored_stuff(request):
-    productsInStock = ProductsInStock.objects.all()
+    productsInStock = ProductsInStock.objects.filter(locationId__title='Склад')
     return render(request, 'report stored stuff.html', {'productsInStock': productsInStock})
 
 
@@ -200,12 +232,12 @@ def search(request, search_type):
 
 from django.db.models import F
 from django.db.models import Sum
-def supply_detail(request, supply_number):
+def supply_detail(request, supply_number, result=''):
     supply = Supply.objects.get(pk=supply_number)
     supply_content = ContentOfSupply.objects.filter(supplyId=supply_number)
     sum = supply_content.aggregate(total_price=Sum(F('productId__price') * F('amount')))['total_price']
     
-    context = {'supply_number': supply_number, "supply": supply, "supply_content": supply_content, "sum": sum}
+    context = {'supply_number': supply_number, "supply": supply, "supply_content": supply_content, "sum": sum, "result": result}
     return render(request, 'supply one.html', context)
 
 

@@ -28,6 +28,8 @@ urlpatterns = [
     # поставки
     path('supplies/add/', views.supplies_add, name='supplies_add'),
     path('supplies/list/', views.supplies_list, name='supplies_list'),
+    path('supplies/collect/<int:supply_id>', views.supply_collect, name='supply_collect'),
+    # содержания поставок
     # отгрузки
     path('shipment/add/', views.shipment_add, name='shipment_add'),
     path('shipment/list/', views.shipment_list, name='shipment_list'),

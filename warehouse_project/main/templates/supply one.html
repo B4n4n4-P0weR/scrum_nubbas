@@ -87,6 +87,8 @@
         </tbody>
         </table>
         <p>Сумма поставки: {{ sum }} руб.</p>
+        <button class="button" onclick="location.href='{% url 'supply_collect' supply_id=supply.id %}'">Получить</button>
+        {{ result }}
     </div>
     <div class="button-container">
         <button class="edit_button">Изменить</button>
