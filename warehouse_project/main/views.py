@@ -197,7 +197,7 @@ def report_sold_stuff(request):
 
 
 def report_stored_stuff(request):
-    productsInStock = ProductsInStock.objects.filter()
+    productsInStock = ProductsInStock.objects.filter(warehouse=True)
     return render(request, 'report stored stuff.html', {'productsInStock': productsInStock})
 
 

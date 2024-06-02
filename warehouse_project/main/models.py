@@ -16,7 +16,7 @@ class Product(models.Model):
 class Sale(models.Model):
     id = models.AutoField(primary_key=True)
     productId = models.ForeignKey(Product, on_delete=models.CASCADE)
-    amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    amount = models.PositiveIntegerField(default=0)
     saleDate = models.DateTimeField()
 
 
@@ -54,10 +54,10 @@ class ContentOfShipment(models.Model):
     id = models.AutoField(primary_key=True)
     shipmentId = models.ForeignKey(Shipment, on_delete=models.CASCADE)
     productId = models.ForeignKey(Product, on_delete=models.CASCADE)
-    amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    amount = models.PositiveIntegerField(default=0)
 
 
 class ProductsInStock(models.Model):
     productId = models.ForeignKey(Product, on_delete=models.CASCADE)
-    amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    warehouse = models.BooleanField(default=False)
+    amount = models.PositiveIntegerField(default=0)
+    warehouse = models.BooleanField(default=True)
