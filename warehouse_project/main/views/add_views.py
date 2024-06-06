@@ -45,8 +45,9 @@ def sales_add(request):
                 form = SaleForm()
     else:
         form = SaleForm()
+        products_count = form.fields['productId'].queryset.count()
 
-    return render(request, "sales add.html", {"form": form, "result": result})
+    return render(request, "sales add.html", {"form": form, "count": products_count, "result": result})
 
 
 def sale_possible(product: Product, amount: int):

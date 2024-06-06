@@ -49,6 +49,9 @@
     </div>
     <form method="post">
         {% csrf_token %}
+        {% if count == 0 %}
+        <p>Нет товаров в торговом помещении</p>
+        {% endif %}
         {{ form.as_p }}
         <button class="confirm_button" type="submit">Добавить</button>
         {% if result %}

@@ -13,13 +13,13 @@ class ProductForm(forms.ModelForm):
         }
 
 class SaleForm(forms.ModelForm):
-    productID = forms.ModelChoiceField(queryset=ProductsInStock.objects.filter(warehouse=False))
+    productId = forms.ModelChoiceField(queryset=ProductsInStock.objects.filter(warehouse=False), label="Товар")
     
     class Meta:
         model = Sale
-        fields = ["amount"]
+        fields = ["productId", "amount"]
         labels = {
-            "amount": "Количество",
+            "amount": "Количество"
         }
 
 class SupplierForm(forms.ModelForm):
