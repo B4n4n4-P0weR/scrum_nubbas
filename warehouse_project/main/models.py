@@ -16,7 +16,7 @@ class Product(models.Model):
 class Sale(models.Model):
     id = models.AutoField(primary_key=True)
     productId = models.ForeignKey(Product, on_delete=models.CASCADE)
-    amount = models.PositiveIntegerField(default=0)
+    amount = models.PositiveIntegerField(default=1)
     saleDate = models.DateTimeField()
 
 

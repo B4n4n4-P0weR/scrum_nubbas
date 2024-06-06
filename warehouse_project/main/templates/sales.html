@@ -97,27 +97,25 @@
 </head>
 <body>
     <div class="navbar">
-        <a href="{% url 'home' %}">Назад</a>
-        <a href='{% url 'sales' %}'">Продажи</a>
-        <a href='{% url 'supplies' %}'">Поставки</a>
-        <a href='{% url 'reports' %}'">Отчёты</a>
+        <a href='{% url 'home' %}'>Назад</a>
+        <a href='{% url 'sales' %}'>Продажи</a>
+        <a href='{% url 'supplies' %}'>Поставки</a>
+        <a href='{% url 'reports' %}'>Отчёты</a>
     </div>
     <div class="content">
         <h1>Продажи</h1>
         <!-- Потом переместить (так пока что удобнее) -->
         <div class="main-container">
             <div class="left-buttons">
-                <button class="button" onclick="location.href='{% url 'sales_list' %}'">Список заказов</button>
+                <button class="button" onclick="location.href='{% url 'sales_list' %}'">Список продаж</button>
                 <button class="button" onclick="location.href='{% url 'shipment_list' %}'">Список отгрузкок</button>
-                <button class="button" onclick="location.href='{% url 'content_of_shipment_list' %}'">Список содержаний отгрузки</button>
             </div>
             <div class="center-button">
                 <button class="button" onclick="location.href='{% url 'search' 'sales' %}'">Поиск</button>
             </div>
             <div class="right-buttons">
-                <button class="button" onclick="location.href='{% url 'sales_add' %}'">Добавить заказ</button>
+                <button class="button" onclick="location.href='{% url 'sales_add' %}'">Добавить продажу</button>
                 <button class="button" onclick="location.href='{% url 'shipment_add' %}'">Добавить отгрузку</button>
-                <button class="button" onclick="location.href='{% url 'content_of_shipment_add' %}'">Добавить содержание отгрузки</button>
             </div>
         </div>
     </div>

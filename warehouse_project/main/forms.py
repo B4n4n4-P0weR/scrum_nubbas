@@ -13,12 +13,12 @@ class ProductForm(forms.ModelForm):
         }
 
 class SaleForm(forms.ModelForm):
+    productID = forms.ModelChoiceField(queryset=ProductsInStock.objects.filter(warehouse=False))
+    
     class Meta:
         model = Sale
-        fields = ["saleDate", "productId", "amount"]
+        fields = ["amount"]
         labels = {
-            "saleDate": "Дата продажи",
-            "productId": "Id продукта",
             "amount": "Количество",
         }
 
