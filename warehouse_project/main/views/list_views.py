@@ -26,9 +26,3 @@ def supplies_list(request):
 def shipment_list(request):
     shipment = Shipment.objects.all()
     return render(request, 'shipment list.html', {'shipments': shipment})
-
-
-
-def content_of_shipment_list(request):
-    content_of_shipment = ContentOfShipment.objects.all()
-    return render(request, 'content of shipment list.html', {'content_of_shipment': content_of_shipment})

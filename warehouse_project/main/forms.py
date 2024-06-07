@@ -1,6 +1,7 @@
 from django import forms
 from .models import *
 
+
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
@@ -12,15 +13,17 @@ class ProductForm(forms.ModelForm):
             "price": "Цена",
         }
 
+
 class SaleForm(forms.ModelForm):
     productId = forms.ModelChoiceField(queryset=ProductsInStock.objects.filter(warehouse=False), label="Товар")
-    
+
     class Meta:
         model = Sale
         fields = ["productId", "amount"]
         labels = {
             "amount": "Количество"
         }
+
 
 class SupplierForm(forms.ModelForm):
     class Meta:
@@ -33,6 +36,7 @@ class SupplierForm(forms.ModelForm):
             "director": "Руководитель"
         }
 
+
 class SupplyForm(forms.ModelForm):
     class Meta:
         model = Supply
@@ -40,6 +44,7 @@ class SupplyForm(forms.ModelForm):
         labels = {
             "supplierId": "Поставщик"
         }
+
 
 class ContentOfSupplyForm(forms.ModelForm):
     class Meta:
@@ -50,32 +55,29 @@ class ContentOfSupplyForm(forms.ModelForm):
             "amount": "Количество"
         }
 
+
 class ShipmentForm(forms.ModelForm):
     class Meta:
         model = Shipment
-        fields = ["shipDate"]
-        labels = {
-            "shipDate": "Дата отгрузки"
-        }
+        fields = []
+
 
 class ContentOfShipmentForm(forms.ModelForm):
     class Meta:
         model = ContentOfShipment
-        fields = ["shipmentId", "productId", "amount"]
+        fields = ["productId", "amount"]
         labels = {
-            "shipmentId": "Id отгрузки",
             "productId": "Id продукта",
             "amount": "Количество"
         }
 
 
 class ProductsInStockForm(forms.ModelForm):
-        class Meta:
-            model = ProductsInStock
-            fields = ["productId", "amount", "warehouse"]
-            labels = {
-                "productId": "Id продукта",
-                "amount": "Количество",
-                "saleDate": "Id расположения"
-            }
-
+    class Meta:
+        model = ProductsInStock
+        fields = ["productId", "amount", "warehouse"]
+        labels = {
+            "productId": "Id продукта",
+            "amount": "Количество",
+            "warehouse": "На складе"  # BooleanField
+        }

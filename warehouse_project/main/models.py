@@ -47,14 +47,14 @@ class ContentOfSupply(models.Model):
 
 class Shipment(models.Model):
     id = models.AutoField(primary_key=True)
-    shipDate = models.DateTimeField()
+    shipDate = models.DateTimeField(default=datetime.now)
 
 
 class ContentOfShipment(models.Model):
     id = models.AutoField(primary_key=True)
     shipmentId = models.ForeignKey(Shipment, on_delete=models.CASCADE)
     productId = models.ForeignKey(Product, on_delete=models.CASCADE)
-    amount = models.PositiveIntegerField(default=0)
+    amount = models.PositiveIntegerField(default=1)
 
 
 class ProductsInStock(models.Model):

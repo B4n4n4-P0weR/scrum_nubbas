@@ -44,28 +44,32 @@
 </head>
 <body>
     <div class="back-button-container">
-            <button class="button" onclick="location.href='{% url 'sales' %}'">Назад</button>
+        <button class="button" onclick="location.href='{% url 'sales' %}'">Назад</button>
     </div>
     {% if shipments|length > 0 %}
-    <h2>Список товаров</h2>
+    <h2>Список отгрузок</h2>
     <div class = "content">
         <table>
             <thead>
                 <tr>
-                    <th>Дата отгрузки</th>
+                    <th>Id</th>
+                    <th>Время отгрузки</th>
+                    <th>Кнопка</th>
                 </tr>
             </thead>
             <tbody>
                 {% for shipment in shipments %}
                 <tr>
+                    <td>{{ shipment.id }}</td>
                     <td>{{ shipment.shipDate }}</td>
+                    <td><button class="button" onclick="location.href='{% url 'shipment_detail' shipment_number=shipment.id %}'">Открыть</button></td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
     {% else %}
-    <h2>Список товаров пуст</h2>
+    <h2>Список поставок пуст</h2>
     {% endif %}
 </body>
 </html>

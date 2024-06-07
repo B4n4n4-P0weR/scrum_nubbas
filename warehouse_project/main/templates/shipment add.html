@@ -41,6 +41,7 @@
             cursor: pointer;
         }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
     <h1>Добавить отгрузку</h1>
@@ -48,12 +49,42 @@
             <button class="button" onclick="location.href='{% url 'sales' %}'">Назад</button>
     </div>
     <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="confirm_button" type="submit">Добавить</button>
-        {% if result %}
-            <br>{{ result }}
-        {% endif %}
+      {% csrf_token %}
+      {{ form.as_p }}
+      {{ formset.management_form }}
+      <div id="form_set">
+        {% for form in formset %}
+          <div class="form">{{ form.as_table }}</div>
+        {% endfor %}
+      </div>
+
+      <div id="empty_form" style="display:none">
+        <div class="form">
+            {{ formset.empty_form.as_table }}
+            <button onclick="removeDiv(this)">X</button>
+        </div>
+      </div>
+      <input type="button" value="Еще" id="add_more" />
+      <script>
+        function removeDiv(button) {
+            $(button).closest("div").remove();
+        }
+
+        $('#add_more').click(function () {
+          var form_idx = $('#id_form-TOTAL_FORMS').val()
+          $('#form_set').append(
+            $('#empty_form')
+              .html()
+              .replace(/__prefix__/g, form_idx)
+          )
+          $('#id_form-TOTAL_FORMS').val(parseInt(form_idx) + 1)
+        })
+      </script>
+
+      <button class="confirm_button" type="submit">Добавить</button>
+      {% if result %}
+        <br />{{ result }}
+      {% endif %}
     </form>
 </body>
 </html>

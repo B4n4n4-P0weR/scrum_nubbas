@@ -15,6 +15,8 @@ urlpatterns = [
     path('get_supply/', views.get_supply, name='get_supply'),
     path('sales/<int:sale_number>/', views.sale_detail, name='sale_detail'),
     path('get_sale/', views.get_sale, name='get_sale'),
+    path('shipment/<int:shipment_number>/', views.shipment_detail, name='shipment_detail'),
+    path('get_shipment/', views.get_shipment, name='get_shipment'),
 
     # товары
     path('product/add/', views.product_add, name='product_add'),
@@ -29,20 +31,17 @@ urlpatterns = [
     path('supplies/add/', views.supplies_add, name='supplies_add'),
     path('supplies/list/', views.supplies_list, name='supplies_list'),
     path('supplies/collect/<int:supply_id>', views.supply_collect, name='supply_collect'),
-    # содержания поставок
     # отгрузки
     path('shipment/add/', views.shipment_add, name='shipment_add'),
     path('shipment/list/', views.shipment_list, name='shipment_list'),
-    # содержания отгрузок
-    path('shipment/content/add/', views.content_of_shipment_add, name='content_of_shipment_add'),
-    path('shipment/content/list/', views.content_of_shipment_list, name='content_of_shipment_list'),
+    # содержания отгрузок и содержания поставок удалены из прямого доступа
 
     # отчёты
     path('reports/needful/', views.report_needful_stuff, name='report_needful_stuff'),
     path('reports/sold/', views.report_sold_stuff, name='report_sold_stuff'),
     path('reports/stored/', views.report_stored_stuff, name='report_stored_stuff'),
 
-    #удаление (для дебага)
+    # удаление (для дебага)
     path('clear', views.debug_deleted, name='debug_deleted'),
     path('clear/all', views.all_clear, name='all_clear'),
     path('clear/product', views.product_clear, name='product_clear'),

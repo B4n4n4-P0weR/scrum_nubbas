@@ -156,14 +156,35 @@ def shipment_add(request):
 
     if request.method == "POST":
         form = ShipmentForm(request.POST)
-        if form.is_valid():
-            form.save()
-            result = f"Добавлено: {form.cleaned_data['shipDate']}"
+        Formset = formset_factory(ContentOfShipmentForm)
+        formset = Formset(request.POST)
+        if form.is_valid() and formset.is_valid():
+
+            with transaction.atomic():
+                shipment = form.save()
+                amount = save_shipment_content(formset, shipment)
+
+            result = f"Добавлена отгрузка, количество наименований {amount}"
             form = ShipmentForm()
+            formset = formset_factory(ContentOfShipmentForm)
+
     else:
         form = ShipmentForm()
+        formset = formset_factory(ContentOfShipmentForm)
 
-    return render(request, "shipment add.html", {"form": form, "result": result})
+    return render(
+        request,
+        "shipment add.html",
+        {"form": form, "result": result, "formset": formset}
+    )
+
+
+def save_shipment_content(formset, shipment):
+    for form in formset:
+        content_of_shipment = form.save(commit=False)
+        content_of_shipment.shipmentId = shipment
+        content_of_shipment.save()
+    return len(formset)
 
 
 def content_of_shipment_add(request):
