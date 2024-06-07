@@ -134,23 +134,6 @@ def supply_collect(request, supply_id):
     return supply_detail(request, supply_id, result)
 
 
-def content_of_supply_add(request):
-    result = None
-
-    if request.method == "POST":
-        form = ContentOfSupplyForm(request.POST)
-        if form.is_valid():
-            form.save()
-            result = f"Добавлено: {form.cleaned_data['supplyId']} - {form.cleaned_data['productId']}"
-            form = ContentOfSupplyForm()
-    else:
-        form = ContentOfSupplyForm()
-
-    return render(
-        request, "content of supply add.html", {"form": form, "result": result}
-    )
-
-
 def shipment_add(request):
     result = None
 
@@ -185,20 +168,3 @@ def save_shipment_content(formset, shipment):
         content_of_shipment.shipmentId = shipment
         content_of_shipment.save()
     return len(formset)
-
-
-def content_of_shipment_add(request):
-    result = None
-
-    if request.method == "POST":
-        form = ContentOfShipmentForm(request.POST)
-        if form.is_valid():
-            form.save()
-            result = f"Добавлено: {form.cleaned_data['shipmentId']} - {form.cleaned_data['productId']} руб."
-            form = ContentOfShipmentForm()
-    else:
-        form = ContentOfShipmentForm()
-
-    return render(
-        request, "content of shipment add.html", {"form": form, "result": result}
-    )
