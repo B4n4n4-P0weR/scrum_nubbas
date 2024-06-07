@@ -46,10 +46,10 @@ urlpatterns = [
     path('clear', views.debug_deleted, name='debug_deleted'),
     path('clear/all', views.all_clear, name='all_clear'),
     path('clear/product', views.product_clear, name='product_clear'),
-    path('clear/sale_clear', views.sale_clear, name='sale_clear'),
-    path('clear/supplier_clear', views.supplier_clear, name='supplier_clear'),
-    path('clear/supply_clear', views.supply_clear, name='supply_clear'),
-    path('clear/content_of_supply_clear', views.content_of_supply_clear, name='content_of_supply_clear'),
-    path('clear/shipment_clear', views.shipment_clear, name='shipment_clear'),
-    path('clear/content_of_shipment_clear', views.content_of_shipment_clear, name='content_of_shipment_clear')
+    path('clear/sale', views.sale_clear, name='sale_clear'),
+    path('clear/supplier', views.supplier_clear, name='supplier_clear'),
+    path('clear/supply', views.supply_clear, name='supply_clear'),
+    path('clear/content_of_supply', views.content_of_supply_clear, name='content_of_supply_clear'),
+    path('clear/shipment', views.shipment_clear, name='shipment_clear'),
+    path('clear/content_of_shipment', views.content_of_shipment_clear, name='content_of_shipment_clear')
 ]

@@ -6,6 +6,7 @@ from ..models import *
 def debug_deleted(request):
     return render(request, 'debug delete.html')
 
+
 def all_clear(request):
     Product.objects.all().delete()
     Sale.objects.all().delete()
@@ -27,21 +28,26 @@ def sale_clear(request):
     Sale.objects.all().delete()
     return HttpResponse("<a href='http://127.0.0.1:8000/clear'>Назад</a> Все продажи удалены")
 
+
 def supplier_clear(request):
     Supplier.objects.all().delete()
     return HttpResponse("<a href='http://127.0.0.1:8000/clear'>Назад</a> Удалено")
+
 
 def supply_clear(request):
     Supply.objects.all().delete()
     return HttpResponse("<a href='http://127.0.0.1:8000/clear'>Назад</a> Все поставки удалены")
 
+
 def content_of_supply_clear(request):
     ContentOfSupply.objects.all().delete()
     return HttpResponse("<a href='http://127.0.0.1:8000/clear'>Назад</a> Удалено")
 
+
 def shipment_clear(request):
     Shipment.objects.all().delete()
     return HttpResponse("<a href='http://127.0.0.1:8000/clear'>Назад</a> Удалено")
+
 
 def content_of_shipment_clear(request):
     ContentOfShipment.objects.all().delete()
