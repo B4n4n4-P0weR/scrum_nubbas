@@ -40,6 +40,7 @@ urlpatterns = [
     path('reports/needful/', views.report_needful_stuff, name='report_needful_stuff'),
     path('reports/sold/', views.report_sold_stuff, name='report_sold_stuff'),
     path('reports/stored/', views.report_stored_stuff, name='report_stored_stuff'),
+    path('reports/saleroom/', views.report_saleroom_stuff, name='report_saleroom_stuff'),
 
     # удаление (для дебага)
     path('clear', views.debug_deleted, name='debug_deleted'),
