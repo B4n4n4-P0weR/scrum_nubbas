@@ -45,9 +45,13 @@ def sales_add(request):
                 form = SaleForm()
     else:
         form = SaleForm()
-        products_count = form.fields['productId'].queryset.count()
+        #products_count = form.fields["productId"].queryset.count()
 
-    return render(request, "sales add.html", {"form": form, "count": products_count, "result": result})
+    return render(
+        request,
+        "sales add.html",
+        {"form": form, "result": result},
+    )
 
 
 def sale_possible(product: Product, amount: int):
@@ -134,23 +138,6 @@ def supply_collect(request, supply_id):
     return supply_detail(request, supply_id, result)
 
 
-def content_of_supply_add(request):
-    result = None
-
-    if request.method == "POST":
-        form = ContentOfSupplyForm(request.POST)
-        if form.is_valid():
-            form.save()
-            result = f"Добавлено: {form.cleaned_data['supplyId']} - {form.cleaned_data['productId']}"
-            form = ContentOfSupplyForm()
-    else:
-        form = ContentOfSupplyForm()
-
-    return render(
-        request, "content of supply add.html", {"form": form, "result": result}
-    )
-
-
 def shipment_add(request):
     result = None
 
@@ -160,14 +147,15 @@ def shipment_add(request):
         formset = Formset(request.POST)
         if form.is_valid() and formset.is_valid():
 
-            with transaction.atomic():
-                shipment = form.save()
-                amount = save_shipment_content(formset, shipment)
-
-            result = f"Добавлена отгрузка, количество наименований {amount}"
-            form = ShipmentForm()
-            formset = formset_factory(ContentOfShipmentForm)
-
+            try:
+                with transaction.atomic():
+                    shipment = form.save()
+                    amount = save_shipment_content(formset, shipment)
+                    result = f"Добавлена отгрузка, количество наименований {amount}"
+                    form = ShipmentForm()
+                    formset = formset_factory(ContentOfShipmentForm)
+            except ValueError as e:
+                result = e
     else:
         form = ShipmentForm()
         formset = formset_factory(ContentOfShipmentForm)
@@ -175,30 +163,30 @@ def shipment_add(request):
     return render(
         request,
         "shipment add.html",
-        {"form": form, "result": result, "formset": formset}
+        {"form": form, "result": result, "formset": formset},
     )
 
 
 def save_shipment_content(formset, shipment):
     for form in formset:
-        content_of_shipment = form.save(commit=False)
+        content_of_shipment: ContentOfShipment = form.save(commit=False)
         content_of_shipment.shipmentId = shipment
-        content_of_shipment.save()
+
+        stock = ProductsInStock.objects.get(
+            productId=content_of_shipment.productId, warehouse=True
+        )
+        if content_of_shipment.amount <= stock.amount:
+            sale_stock = ProductsInStock.objects.get_or_create(
+                productId=content_of_shipment.productId, warehouse=False
+            )[0]
+            sale_stock.amount += content_of_shipment.amount
+            stock.amount -= content_of_shipment.amount
+
+            content_of_shipment.save()
+            sale_stock.save()
+            stock.save()
+        else:
+            raise ValueError(
+                f"На складе всего {stock.amount} шт. товара {content_of_shipment.productId}"
+            )
     return len(formset)
-
-
-def content_of_shipment_add(request):
-    result = None
-
-    if request.method == "POST":
-        form = ContentOfShipmentForm(request.POST)
-        if form.is_valid():
-            form.save()
-            result = f"Добавлено: {form.cleaned_data['shipmentId']} - {form.cleaned_data['productId']} руб."
-            form = ContentOfShipmentForm()
-    else:
-        form = ContentOfShipmentForm()
-
-    return render(
-        request, "content of shipment add.html", {"form": form, "result": result}
-    )

@@ -61,3 +61,6 @@ class ProductsInStock(models.Model):
     productId = models.ForeignKey(Product, on_delete=models.CASCADE)
     amount = models.PositiveIntegerField(default=0)
     warehouse = models.BooleanField(default=True)
+    
+    def __str__(self):
+        return str(self.productId)
