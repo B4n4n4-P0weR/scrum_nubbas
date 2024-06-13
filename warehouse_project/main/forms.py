@@ -15,7 +15,7 @@ class ProductForm(forms.ModelForm):
 
 
 class SaleForm(forms.ModelForm):
-    productId = forms.ModelChoiceField(queryset=ProductsInStock.objects.filter(warehouse=False), label="Товар")
+    productId = forms.ModelChoiceField(queryset=Product.objects.filter(productsinstock__warehouse=False).distinct(), label="Товар")
 
     class Meta:
         model = Sale
