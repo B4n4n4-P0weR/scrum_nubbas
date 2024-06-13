@@ -128,7 +128,7 @@ def supply_collect(request, supply_id):
         supply.save()
 
         for content in ContentOfSupply.objects.filter(supplyId=supply):
-            stock = ProductsInStock.objects.get_or_create(productId=content.productId)[
+            stock = ProductsInStock.objects.get_or_create(productId=content.productId, warehouse=True)[
                 0
             ]
             stock.amount += content.amount
