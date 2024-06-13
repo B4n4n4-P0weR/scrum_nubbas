@@ -1,4 +1,4 @@
- body {
+body {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -6,6 +6,13 @@
     font-family: Arial, sans-serif;
     text-align: center;
     height: 100vh;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
 }
 .main {
     display: flex;
@@ -45,8 +52,8 @@
     padding: 14px 20px;
 }
 .navbar a:hover {
-    background-color: #000000;
-    color: black;
+    background-color: rgb(37, 37, 37);
+    color: rgb(230, 230, 230);
 }
 .back-button-container {
     position: absolute;
@@ -91,7 +98,7 @@
     border-radius: 5px;
     cursor: pointer;
 }
-                table {
+table {
     width: 100%;
     border-collapse: collapse;
 }
@@ -115,7 +122,7 @@ th {
     border-radius: 5px;
     cursor: pointer;
 }
-        .toggle-switch {
+.toggle-switch {
     position: relative;
     display: inline-block;
     width: 60px;
@@ -147,6 +154,7 @@ th {
     background-color: white;
     transition: .4s;
 }
+
 input:checked + .slider {
     background-color: #000000;
 }
@@ -165,4 +173,27 @@ input:checked + .slider:before {
 .search-field {
     display: block;
     margin: 20px auto;
+}
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.left-buttons,
+.right-buttons,
+.center-button {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 30%;
+    box-sizing: border-box;
+}
+
+.center-button {
+    align-items: center;
+    justify-content: center;
 }
