@@ -30,8 +30,8 @@ body {
 .button {
     font-size: 20px;
     padding: 10px 20px;
-    background-color: #000000;
-    color: white;
+    background-color: #D5B778;
+    color: #000000;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -41,19 +41,19 @@ body {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    background-color: #000000;
+    background-color: #D5B778;
     padding: 10px 20px;
     width: 100%;
     box-sizing: border-box;
 }
 .navbar a {
-    color: white;
+    color: #000000;
     text-decoration: none;
     padding: 14px 20px;
 }
 .navbar a:hover {
-    background-color: rgb(37, 37, 37);
-    color: rgb(230, 230, 230);
+    background-color: #c1a56d;
+    color: #000000;
 }
 .back-button-container {
     position: absolute;
@@ -92,8 +92,8 @@ body {
     right: 20px;
     font-size: 20px;
     padding: 10px 20px;
-    background-color: #000000;
-    color: white;
+    background-color: #D5B778;
+    color: #000000;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -103,12 +103,12 @@ table {
     border-collapse: collapse;
 }
 th, td {
-    border: 1px solid black;
+    border: #000000;
     padding: 8px;
     text-align: left;
 }
 th {
-    background-color: #f2f2f2;
+    background-color: #D5B778;
 }
 .edit_button {
     position: fixed;
@@ -116,8 +116,8 @@ th {
     right: 20px;
     font-size: 20px;
     padding: 10px 20px;
-    background-color: #000000;
-    color: white;
+    background-color: #D5B778;
+    color: #000000;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -141,7 +141,7 @@ th {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    background-color: #ffffff;
     transition: .4s;
 }
 .slider:before {
@@ -151,12 +151,12 @@ th {
     width: 26px;
     left: 4px;
     bottom: 4px;
-    background-color: white;
+    background-color: #ffffff;
     transition: .4s;
 }
 
 input:checked + .slider {
-    background-color: #000000;
+    background-color: #D5B778;
 }
 input:checked + .slider:before {
     transform: translateX(26px);
@@ -182,7 +182,9 @@ input:checked + .slider:before {
     padding: 20px;
     box-sizing: border-box;
 }
+.report-container{
 
+}
 .left-buttons,
 .right-buttons,
 .center-button {
