@@ -16,10 +16,12 @@
     </div>
     <h1>Отчёты</h1>
     <div class="button-container">
-        <button class="button" onclick="location.href='{% url 'report_needful_stuff' %}'" title="Генерация отчетов о необходимости заказа (чего мало на складе, но много покупают)">Необходимость заказа</button>
-        <button class="button" onclick="location.href='{% url 'report_sold_stuff' %}'" title="Генерация отчетов о продажах (сколько продали)">Проданные товары</button>
-        <button class="button" onclick="location.href='{% url 'report_stored_stuff' %}'" title="Генерация отчетов о состоянии склада (сколько товаров есть)">Товары на складе</button>
-        <button class="button" onclick="location.href='{% url 'report_saleroom_stuff' %}'" title="Генерация отчетов о состоянии торгового помещения (сколько товаров есть)">Товары в торговом помещении</button>
-    <div>
+        <div class="report-container">
+            <button class="button" onclick="location.href='{% url 'report_needful_stuff' %}'" title="Генерация отчетов о необходимости заказа (чего мало на складе, но много покупают)">Необходимость заказа</button>
+            <button class="button" onclick="location.href='{% url 'report_sold_stuff' %}'" title="Генерация отчетов о продажах (сколько продали)">Проданные товары</button>
+            <button class="button" onclick="location.href='{% url 'report_stored_stuff' %}'" title="Генерация отчетов о состоянии склада (сколько товаров есть)">Товары на складе</button>
+            <button class="button" onclick="location.href='{% url 'report_saleroom_stuff' %}'" title="Генерация отчетов о состоянии торгового помещения (сколько товаров есть)">Товары в торговом помещении</button>
+        </div>
+    </div>
 </body>
 </html>
