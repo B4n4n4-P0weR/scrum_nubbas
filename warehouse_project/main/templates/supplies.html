@@ -8,11 +8,13 @@
     <title>Поставки</title>
 </head>
 <body>
-    <h1>Поставки</h1>
-    <div class="back-button-container">
-        <button class="button" onclick="location.href='{% url 'home' %}'">Назад</button>
+    <div class="navbar">
+        <a href="{% url 'home' %}">Назад</a>
+        <a href="{% url 'sales' %}">Продажи</a>
+        <a href="{% url 'supplies' %}">Поставки</a>
+        <a href="{% url 'reports' %}">Отчёты</a>
     </div>
-
+    <h1>Поставки</h1>
     <!-- Потом переместить (так пока что удобнее) -->
     <div class="main-container">
         <div class="left-buttons">

@@ -8,10 +8,13 @@
     <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
 </head>
 <body>
-    <h1>Отчёты</h1>
-    <div class="back-button-container">
-        <button class="button" onclick="location.href='{% url 'home' %}'">Назад</button>
+    <div class="navbar">
+        <a href="{% url 'home' %}">Назад</a>
+        <a href="{% url 'sales' %}">Продажи</a>
+        <a href="{% url 'supplies' %}">Поставки</a>
+        <a href="{% url 'reports' %}">Отчёты</a>
     </div>
+    <h1>Отчёты</h1>
     <div class="button-container">
         <button class="button" onclick="location.href='{% url 'report_needful_stuff' %}'" title="Генерация отчетов о необходимости заказа (чего мало на складе, но много покупают)">Необходимость заказа</button>
         <button class="button" onclick="location.href='{% url 'report_sold_stuff' %}'" title="Генерация отчетов о продажах (сколько продали)">Проданные товары</button>

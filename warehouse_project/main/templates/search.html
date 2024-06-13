@@ -16,8 +16,11 @@
     </script>
 </head>
 <body onload="setSearchType('{{ search_type }}')">
-    <div class="back-button-container">
-        <button class="button" onclick="location.href='{% url back_url %}'">Назад</button>
+    <div class="navbar">
+        <a href="{% url back_url %}">Назад</a>
+        <a href="{% url 'sales' %}">Продажи</a>
+        <a href="{% url 'supplies' %}">Поставки</a>
+        <a href="{% url 'reports' %}">Отчёты</a>
     </div>
     <div class="search-container">
         <h1>Поиск</h1>

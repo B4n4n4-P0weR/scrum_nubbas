@@ -8,10 +8,13 @@
     <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
 </head>
 <body>
-    <h1>Заказ №{{ sale_number }}</h1>
-    <div class="back-button-container">
-        <button class="button" onclick="location.href='{% url 'search' 'sales' %}'">Назад</button>
+    <div class="navbar">
+        <a href="{% url 'search' 'sales' %}">Назад</a>
+        <a href="{% url 'sales' %}">Продажи</a>
+        <a href="{% url 'supplies' %}">Поставки</a>
+        <a href="{% url 'reports' %}">Отчёты</a>
     </div>
+    <h1>Заказ №{{ sale_number }}</h1>
     <div class = "content">
         <p>Номер продажи</p>
         <p>Дата продажи</p>

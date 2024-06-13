@@ -9,10 +9,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
-    <h1>Добавить отгрузку</h1>
-    <div class="back-button-container">
-            <button class="button" onclick="location.href='{% url 'sales' %}'">Назад</button>
+    <div class="navbar">
+        <a href="{% url 'sales' %}">Назад</a>
+        <a href="{% url 'sales' %}">Продажи</a>
+        <a href="{% url 'supplies' %}">Поставки</a>
+        <a href="{% url 'reports' %}">Отчёты</a>
     </div>
+    <h1>Добавить отгрузку</h1>
     <form method="post">
       {% csrf_token %}
       {{ form.as_p }}

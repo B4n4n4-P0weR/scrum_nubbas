@@ -8,10 +8,13 @@
     <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
 </head>
 <body>
-    <h1>Добавить поставщика</h1>
-    <div class="back-button-container">
-            <button class="button" onclick="location.href='{% url 'supplies' %}'">Назад</button>
+    <div class="navbar">
+        <a href="{% url 'supplies' %}">Назад</a>
+        <a href="{% url 'sales' %}">Продажи</a>
+        <a href="{% url 'supplies' %}">Поставки</a>
+        <a href="{% url 'reports' %}">Отчёты</a>
     </div>
+    <h1>Добавить поставщика</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}

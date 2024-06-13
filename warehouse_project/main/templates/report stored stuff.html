@@ -8,8 +8,11 @@
     <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
 </head>
 <body>
-    <div class="back-button-container">
-        <button class="button" onclick="location.href='{% url 'reports' %}'">Назад</button>
+    <div class="navbar">
+        <a href="{% url 'reports'%}">Назад</a>
+        <a href="{% url 'sales' %}">Продажи</a>
+        <a href="{% url 'supplies' %}">Поставки</a>
+        <a href="{% url 'reports' %}">Отчёты</a>
     </div>
     {% if productsInStock|length > 0 %}
     <h2>Товары на складе</h2>
