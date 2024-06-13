@@ -1,99 +1,11 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Продажи</title>
-    <link rel="icon" href="C.png" type="image/png">
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            height: 100vh;
-        }
-        .content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            flex: 1;
-        }
-        .back-button-container {
-            position: absolute;
-            top: 80px;
-            left: 20px;
-        }
-        .button-container {
-            flex-direction: column;
-            display: flex;
-            gap: 30px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        .button {
-            font-size: 20px;
-            padding: 10px 20px;
-            background-color: #000000;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .navbar {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            background-color: #000000;
-            padding: 10px 20px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            padding: 14px 20px;
-        }
-        .navbar a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-        .main-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            width: 100%;
-        }
-        .left-buttons,
-        .right-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .center-button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        /* Потом удалить, нужно для дебага */
-        .red {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            text-decoration: none;
-            font-size: 12px;
-            padding: 10px 20px;
-            background-color: red;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
 </head>
 <body>
     <div class="navbar">

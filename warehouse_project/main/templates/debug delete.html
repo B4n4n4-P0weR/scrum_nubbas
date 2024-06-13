@@ -1,66 +1,28 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Удаление</title>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-        .back-button-container {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-        }
-        .button {
-            font-size: 20px;
-            padding: 10px 20px;
-            background-color: red;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .red {
-            text-decoration: none;
-            font-size: 20px;
-            padding: 10px 20px;
-            background-color: red;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .button-container {
-            flex-direction: column;
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
 </head>
 <body>
-    <h1>Удаление</h1>
-    <div class="back-button-container">
-        <button class="button" onclick="location.href='{% url 'supplies' %}'">Назад</button>
-    </div>
-    <div class="button-container">
-        <button class="red" onclick="location.href='{% url 'all_clear' %}'">Удалить всё</button>
-        <button class="red" onclick="location.href='{% url 'product_clear' %}'">Удалить все товары</button>
-        <button class="red" onclick="location.href='{% url 'sale_clear' %}'">Удалить все продажи</button>
-        <button class="red" onclick="location.href='{% url 'supplier_clear' %}'">Удалить всех поставщиков</button>
-        <button class="red" onclick="location.href='{% url 'supply_clear' %}'">Удалить все поставки</button>
-        <button class="red" onclick="location.href='{% url 'content_of_supply_clear' %}'">Удалить содержание поставки</button>
-        <button class="red" onclick="location.href='{% url 'shipment_clear' %}'">Удалить все отгрузки</button>
-        <button class="red" onclick="location.href='{% url 'content_of_shipment_clear' %}'">Удалить содержание отгрузки</button>
+    <div class="delete-body">
+        <h1>Удаление</h1>
+        <div class="back-button-container">
+            <button class="red" onclick="location.href='{% url 'supplies' %}'">Назад</button>
+        </div>
+        <div class="delete-button-container">
+            <button class="red" onclick="location.href='{% url 'all_clear' %}'">Удалить всё</button>
+            <button class="red" onclick="location.href='{% url 'product_clear' %}'">Удалить все товары</button>
+            <button class="red" onclick="location.href='{% url 'sale_clear' %}'">Удалить все продажи</button>
+            <button class="red" onclick="location.href='{% url 'supplier_clear' %}'">Удалить всех поставщиков</button>
+            <button class="red" onclick="location.href='{% url 'supply_clear' %}'">Удалить все поставки</button>
+            <button class="red" onclick="location.href='{% url 'content_of_supply_clear' %}'">Удалить содержание поставки</button>
+            <button class="red" onclick="location.href='{% url 'shipment_clear' %}'">Удалить все отгрузки</button>
+            <button class="red" onclick="location.href='{% url 'content_of_shipment_clear' %}'">Удалить содержание отгрузки</button>
+        </div>
     </div>
 </body>
 </html>

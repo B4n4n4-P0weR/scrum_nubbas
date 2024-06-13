@@ -1,65 +1,11 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Заказ {{ sale_number }}</title>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-        .back-button-container {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-        }
-        .button {
-            font-size: 20px;
-            padding: 10px 20px;
-            background-color: #000000;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .button-container {
-            flex-direction: column;
-            display: flex;
-            gap: 30px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        .edit_button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            font-size: 20px;
-            padding: 10px 20px;
-            background-color: #000000;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
 </head>
 <body>
     <h1>Заказ №{{ sale_number }}</h1>
