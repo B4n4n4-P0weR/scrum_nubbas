@@ -14,29 +14,27 @@
         <a href="{% url 'supplies' %}">Поставки</a>
         <a href="{% url 'reports' %}">Отчёты</a>
     </div>
-    <h1>Заказ №{{ sale_number }}</h1>
+    <h1>Заказ №{{ sale.id }}</h1>
     <div class = "content">
-        <p>Номер продажи</p>
-        <p>Дата продажи</p>
-        <p>Доп. Информация</p>
+        <p>Дата продажи {{sale.saleDate}}</p>
         <p>Содержание продажи:</p>
         <table>
         <thead>
             <tr>
-                <th>Номер</th>
                 <th>Наименование</th>
                 <th>Количество</th>
             </tr>
         </thead>
         <tbody>
+            {% for content in sale_contents%}
             <tr>
-                <td>1</td>
-                <td>Товар</td>
-                <td>10 шт.</td>
+                <td>{{content.product}}</td>
+                <td>{{content.amount}}</td>
             </tr>
+            {% endfor %}
         </tbody>
         </table>
-        <p>Сумма продажи</p>
+        <p>Сумма продажи: {{total}} руб.</p>
     </div>
 
 

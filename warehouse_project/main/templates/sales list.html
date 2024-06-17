@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Список поставок</title>
+    <title>Список продаж</title>
     <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
 </head>
 <body>
@@ -15,24 +15,22 @@
         <a href="{% url 'reports' %}">Отчёты</a>
     </div>
     {% if sales|length > 0 %}
-    <h2>Список заказов</h2>
+    <h2>Список продаж</h2>
     <div class = "content">
         <table>
             <thead>
                 <tr>
-                    <th>Артикул</th>
-                    <th>saleDate</th>
-                    <th>extraInfo</th>
-                    <th>totalPrice</th>
+                    <th>Номер</th>
+                    <th>Дата и время продажи</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 {% for sale in sales %}
                 <tr>
-                    <td>{{ sale.code }}</td>
+                    <td>{{ sale.id }}</td>
                     <td>{{ sale.saleDate }}</td>
-                    <td>{{ sale.extraInfo }}</td>
-                    <td>{{ sale.totalPrice }} руб.</td>
+                    <td><button class="button" onclick="location.href='{% url 'get_sale' sale_number=sale.id %}'">Открыть</button></td>
                 </tr>
                 {% endfor %}
             </tbody>

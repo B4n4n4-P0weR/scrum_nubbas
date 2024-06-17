@@ -51,10 +51,14 @@ def get_shipment(request):
 
 
 def sale_detail(request, sale_number):
-    context = {"sale_number": sale_number}
-    return render(request, "sale one.html", context)
+    sale = Sale.objects.get(pk=sale_number)
+    sale_contents = SaleContent.objects.filter(sale=sale)
+    sale_sum = sale_contents.aggregate(
+        total_price=Sum(F("product__price") * F("amount"))
+    )["total_price"]
+    return render(request, "sale one.html", {"sale": sale, "sale_contents": sale_contents, "total": sale_sum})
 
 
-def get_sale(request):
+def get_sale(request, sale_number):
     sale_number = request.GET.get("sale_number")
     return redirect("sale_detail", sale_number=sale_number)
