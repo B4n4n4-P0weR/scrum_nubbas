@@ -22,21 +22,40 @@
       {{ formset.management_form }}
       <div id="form_set">
         {% for form in formset %}
-          <div class="form">{{ form.as_table }}</div>
+          <div class="formset-form">{{ form.as_table }}</div>
         {% endfor %}
       </div>
 
       <div id="empty_form" style="display:none">
-        <div class="form">
+        <div class="formset-form">
             {{ formset.empty_form.as_table }}
-            <button onclick="removeDiv(this)">X</button>
+            <button onclick="deleteForm(this)">X</button>
         </div>
       </div>
       <input type="button" value="Еще" id="add_more" />
       <script>
-        function removeDiv(button) {
-            $(button).closest("div").remove();
-        }
+        function deleteForm(button) {
+          var form = button.closest('.formset-form');
+          form.remove();
+          updateFormIndices();
+      }
+
+      function updateFormIndices() {
+        var forms = document.querySelectorAll('.formset-form');
+        var totalForms = forms.length - 1;
+        document.getElementById('id_form-TOTAL_FORMS').value = totalForms;
+
+        forms.forEach(function(form, index) {
+            form.querySelectorAll('input, select, textarea').forEach(function(input) {
+                if (input.name) {
+                    input.name = input.name.replace(/form-\d+-/, 'form-' + index + '-');
+                }
+                if (input.id) {
+                    input.id = input.id.replace(/form-\d+-/, 'form-' + index + '-');
+                }
+            });
+        });
+    }
 
         $('#add_more').click(function () {
           var form_idx = $('#id_form-TOTAL_FORMS').val()
