@@ -25,44 +25,62 @@ def sales_add(request):
 
     if request.method == "POST":
         form = SaleForm(request.POST)
+        Formset = formset_factory(SaleContentForm)
+        formset = Formset(request.POST)
         if form.is_valid():
-            sale: Sale = form.save(commit=False)
-            sale.saleDate = datetime.now()
+            if formset.is_valid():
+                sale: Sale = form.save(commit=False)
 
-            sale_res, result = sale_possible(sale.productId, sale.amount)
+                sale_res, result = sale_possible(formset)
 
-            if sale_res:
-                result = f"Продано {sale.amount} шт. {sale.productId}"
-                stock = ProductsInStock.objects.get(
-                    warehouse=False, productId=sale.productId
-                )
-                stock.amount -= sale.amount
+                if sale_res:
+                    result = f"Успешно продано"
 
-                with transaction.atomic():
-                    sale.save()
-                    stock.save()
+                    with transaction.atomic():
+                        sale.save()
+                        save_sale_content(formset, sale)
 
-                form = SaleForm()
+                    form = SaleForm()
+                    formset = formset_factory(SaleContentForm)
     else:
         form = SaleForm()
-        #products_count = form.fields["productId"].queryset.count()
+        formset = formset_factory(SaleContentForm)
 
     return render(
         request,
         "sales add.html",
-        {"form": form, "result": result},
+        {"form": form, "result": result, "formset": formset},
     )
 
 
-def sale_possible(product: Product, amount: int):
-    try:
-        stock = ProductsInStock.objects.get(warehouse=False, productId=product)
-        if stock.amount < amount:
-            result = f"В торговом помещении всего {stock.amount} шт. товара {product}"
+def save_sale_content(formset, sale):
+    for form in formset:
+        content_of_sale = form.save(commit=False)
+        content_of_sale.sale = sale
+        
+        stock = ProductsInStock.objects.get(productId = content_of_sale.product, warehouse=False)
+        stock.amount -= content_of_sale.amount
+        
+        stock.save()
+        content_of_sale.save()
+    return len(formset)
+
+
+def sale_possible(formset):
+    for form in formset:
+        saleContent = form.save(commit=False)
+        product = saleContent.product
+        amount = saleContent.amount
+        try:
+            stock = ProductsInStock.objects.get(warehouse=False, productId=product)
+            if stock.amount < amount:
+                result = (
+                    f"В торговом помещении всего {stock.amount} шт. товара {product}"
+                )
+                return (False, result)
+        except ProductsInStock.DoesNotExist:
+            result = f"В торговом помещении нет товара: {product}"
             return (False, result)
-    except ProductsInStock.DoesNotExist:
-        result = f"В торговом помещении нет товара: {product}"
-        return (False, result)
 
     return (True, "Продажа возможна")
 
@@ -128,9 +146,9 @@ def supply_collect(request, supply_id):
         supply.save()
 
         for content in ContentOfSupply.objects.filter(supplyId=supply):
-            stock = ProductsInStock.objects.get_or_create(productId=content.productId, warehouse=True)[
-                0
-            ]
+            stock = ProductsInStock.objects.get_or_create(
+                productId=content.productId, warehouse=True
+            )[0]
             stock.amount += content.amount
             stock.save()
         result = "Поставка получена"

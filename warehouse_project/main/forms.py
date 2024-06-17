@@ -15,14 +15,22 @@ class ProductForm(forms.ModelForm):
 
 
 class SaleForm(forms.ModelForm):
-    productId = forms.ModelChoiceField(queryset=Product.objects.filter(productsinstock__warehouse=False).distinct(), label="Товар")
-
     class Meta:
         model = Sale
-        fields = ["productId", "amount"]
-        labels = {
-            "amount": "Количество"
-        }
+        fields = ["saleDate"]
+        labels = {"saleDate": "Дата и время продажи"}
+
+
+class SaleContentForm(forms.ModelForm):
+    product = forms.ModelChoiceField(
+        queryset=Product.objects.filter(productsinstock__warehouse=False).distinct(),
+        label="Товар",
+    )
+
+    class Meta:
+        model = SaleContent
+        fields = ["product", "amount"]
+        labels = {"amount": "Количество"}
 
 
 class SupplierForm(forms.ModelForm):
@@ -33,7 +41,7 @@ class SupplierForm(forms.ModelForm):
             "title": "Наименование",
             "phone": "Телефон",
             "address": "Адрес",
-            "director": "Руководитель"
+            "director": "Руководитель",
         }
 
 
@@ -41,19 +49,14 @@ class SupplyForm(forms.ModelForm):
     class Meta:
         model = Supply
         fields = ["supplierId"]
-        labels = {
-            "supplierId": "Поставщик"
-        }
+        labels = {"supplierId": "Поставщик"}
 
 
 class ContentOfSupplyForm(forms.ModelForm):
     class Meta:
         model = ContentOfSupply
         fields = ["productId", "amount"]
-        labels = {
-            "productId": "Товар",
-            "amount": "Количество"
-        }
+        labels = {"productId": "Товар", "amount": "Количество"}
 
 
 class ShipmentForm(forms.ModelForm):
@@ -66,10 +69,7 @@ class ContentOfShipmentForm(forms.ModelForm):
     class Meta:
         model = ContentOfShipment
         fields = ["productId", "amount"]
-        labels = {
-            "productId": "Id продукта",
-            "amount": "Количество"
-        }
+        labels = {"productId": "Id продукта", "amount": "Количество"}
 
 
 class ProductsInStockForm(forms.ModelForm):
@@ -79,5 +79,5 @@ class ProductsInStockForm(forms.ModelForm):
         labels = {
             "productId": "Id продукта",
             "amount": "Количество",
-            "warehouse": "На складе"  # BooleanField
+            "warehouse": "На складе",  # BooleanField
         }
