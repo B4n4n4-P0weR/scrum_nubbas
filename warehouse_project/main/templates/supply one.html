@@ -1,48 +1,48 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}" />
     <title>Поставка {{ supply_number }}</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="navbar">
-        <a href="{% url 'supplies_list' %}">Назад</a>
-        <a href="{% url 'sales' %}">Продажи</a>
-        <a href="{% url 'supplies' %}">Поставки</a>
-        <a href="{% url 'reports' %}">Отчёты</a>
+      <a href="{% url 'supplies_list' %}">Назад</a>
+      <a href="{% url 'sales' %}">Продажи</a>
+      <a href="{% url 'supplies' %}">Поставки</a>
+      <a href="{% url 'reports' %}">Отчёты</a>
     </div>
     <h1>Поставка №{{ supply_number }}</h1>
-    <div class = "content">
-        <p>Поставщик: {{ supply.supplierId }}</p>
-        <p>Дата заказа: {{ supply.orderDate }}</p>
-        <p>Дата получения: {{ supply.receivingDate }}</p>
-        <table>
+    <div class="content">
+      <p>Поставщик: {{ supply.supplierId }}</p>
+      <p>Дата заказа: {{ supply.orderDate }}</p>
+      <p>Дата получения: {{ supply.receivingDate }}</p>
+      <table>
         <thead>
-            <tr>
-                <th>Наименование</th>
-                <th>Количество</th>
-                <th>Цена за шт.</th>
-            </tr>
+          <tr>
+            <th>Наименование</th>
+            <th>Количество</th>
+            <th>Цена за шт.</th>
+          </tr>
         </thead>
         <tbody>
-            {% for content in supply_content %}
+          {% for content in supply_content %}
             <tr>
-                <td>{{ content.productId }}</td>
-                <td>{{ content.amount }}</td>
-                <td>{{ content.price_one }}</td>
+              <td>{{ content.productId }}</td>
+              <td>{{ content.amount }}</td>
+              <td>{{ content.price_one }}</td>
             </tr>
-            {% endfor %}
+          {% endfor %}
         </tbody>
-        </table>
-        <p>Сумма поставки: {{ sum }} руб.</p>
-        <button class="button" onclick="location.href='{% url 'supply_collect' supply_id=supply.id %}'">Получить</button>
-        {{ result }}
+      </table>
+      <p>Сумма поставки: {{ sum }} руб.</p>
+      <button class="button" onclick="location.href='{% url 'supply_collect' supply_id=supply.id %}'">Получить</button>
+      {{ result }}
     </div>
     <div class="button-container">
-        <button class="edit_button">Изменить</button>
-    <div>
-</body>
+      <button class="edit_button">Изменить</button>
+    </div>
+  </body>
 </html>

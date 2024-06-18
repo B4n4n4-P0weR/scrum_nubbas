@@ -34,15 +34,14 @@ def get_supply(request):
 def shipment_detail(request, shipment_number, result=""):
     shipment = Shipment.objects.get(pk=shipment_number)
     shipment_content = ContentOfShipment.objects.filter(shipmentId=shipment_number)
-    shipment_content_sum = shipment_content.aggregate(
-        total_price=Sum(F("productId__price") * F("amount"))
-    )["total_price"]
+    # shipment_content_sum = shipment_content.aggregate(
+    #     total_price=Sum(F("productId__price") * F("amount"))
+    # )["total_price"]
 
     context = {
         "shipment_number": shipment_number,
         "shipment": shipment,
         "shipment_content": shipment_content,
-        "sum": shipment_content_sum,
         "result": result,
     }
     return render(request, "shipment one.html", context)
@@ -56,9 +55,12 @@ def get_shipment(request):
 def sale_detail(request, sale_number):
     sale = Sale.objects.get(pk=sale_number)
     sale_contents = SaleContent.objects.filter(sale=sale)
-    sale_sum = sale_contents.aggregate(
-        total_price=Sum(F("product__price") * F("amount"))
-    )["total_price"]
+    # sale_sum = sale_contents.aggregate(
+    #     total_price=Sum(F("product__price") * F("amount"))
+    # )["total_price"]
+    sale_sum = 0
+    for content in sale_contents:
+        sale_sum += content.price_one * content.amount
     return render(request, "sale one.html", {"sale": sale, "sale_contents": sale_contents, "total": sale_sum})
 
 
