@@ -55,8 +55,9 @@ def sales_add(request):
 
 def save_sale_content(formset, sale):
     for form in formset:
-        content_of_sale = form.save(commit=False)
+        content_of_sale : SaleContent = form.save(commit=False)
         content_of_sale.sale = sale
+        content_of_sale.price_one = content_of_sale.product.price
         
         stock = ProductsInStock.objects.get(productId = content_of_sale.product, warehouse=False)
         stock.amount -= content_of_sale.amount

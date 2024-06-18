@@ -51,5 +51,6 @@ urlpatterns = [
     path('clear/supply', views.supply_clear, name='supply_clear'),
     path('clear/content_of_supply', views.content_of_supply_clear, name='content_of_supply_clear'),
     path('clear/shipment', views.shipment_clear, name='shipment_clear'),
-    path('clear/content_of_shipment', views.content_of_shipment_clear, name='content_of_shipment_clear')
+    path('clear/content_of_shipment', views.content_of_shipment_clear, name='content_of_shipment_clear'),
+    path('debug/sale_contents', views.sale_contents_show)
 ]

@@ -9,9 +9,12 @@ from django.db.models import Sum
 def supply_detail(request, supply_number, result=""):
     supply = Supply.objects.get(pk=supply_number)
     supply_content = ContentOfSupply.objects.filter(supplyId=supply_number)
-    supply_content_sum = supply_content.aggregate(
-        total_price=Sum(F("productId__price") * F("amount"))
-    )["total_price"]
+    # supply_content_sum = supply_content.aggregate(
+    #     total_price=Sum(F("productId__price") * F("amount"))
+    # )["total_price"]
+    supply_content_sum = 0
+    for content in supply_content:
+        supply_content_sum += content.amount * content.price_one
 
     context = {
         "supply_number": supply_number,

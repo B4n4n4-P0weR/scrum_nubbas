@@ -10,7 +10,7 @@ class ProductForm(forms.ModelForm):
             "code": "Артикул",
             "title": "Наименование",
             "manufacturer": "Производитель",
-            "price": "Цена",
+            "price": "Цена продаж",
         }
 
 
@@ -55,8 +55,12 @@ class SupplyForm(forms.ModelForm):
 class ContentOfSupplyForm(forms.ModelForm):
     class Meta:
         model = ContentOfSupply
-        fields = ["productId", "amount"]
-        labels = {"productId": "Товар", "amount": "Количество"}
+        fields = ["productId", "amount", "price_one"]
+        labels = {
+            "productId": "Товар",
+            "amount": "Количество",
+            "price_one": "Цена за шт.",
+        }
 
 
 class ShipmentForm(forms.ModelForm):

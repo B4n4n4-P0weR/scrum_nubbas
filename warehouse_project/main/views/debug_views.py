@@ -52,3 +52,11 @@ def shipment_clear(request):
 def content_of_shipment_clear(request):
     ContentOfShipment.objects.all().delete()
     return HttpResponse("<a href='http://127.0.0.1:8000/clear'>Назад</a> Удалено")
+
+
+def sale_contents_show(request):
+    contents = SaleContent.objects.all()
+    s = ""
+    for i in contents:
+        s += f"{i.product}\t{i.price_one}\t{i.amount}<br>"
+    return HttpResponse(s)
