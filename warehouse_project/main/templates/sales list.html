@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Список продаж</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/list.css' %}">
 </head>
 <body>
     <div class="navbar">
@@ -14,30 +14,21 @@
         <a href="{% url 'supplies' %}">Поставки</a>
         <a href="{% url 'reports' %}">Отчёты</a>
     </div>
-    {% if sales|length > 0 %}
-    <h2>Список продаж</h2>
-    <div class = "content">
-        <table>
-            <thead>
-                <tr>
-                    <th>Номер</th>
-                    <th>Дата и время продажи</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for sale in sales %}
-                <tr>
-                    <td>{{ sale.id }}</td>
-                    <td>{{ sale.saleDate }}</td>
-                    <td><button class="button" onclick="location.href='{% url 'get_sale' sale_number=sale.id %}'">Открыть</button></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    <div class="supplies-header">Список продаж</div>
+    <div class="content">
+        {% if sales|length > 0 %}
+            {% for sale in sales %}
+            <div class="supply-item">
+                <div class="supply-info">
+                    <div class="supply-id">№ {{ sale.id }}</div>
+                    <div class="supply-dates">{{ sale.saleDate }}</div>
+                </div>
+                <button class="button" onclick="location.href='{% url 'get_sale' sale_number=sale.id %}'">Открыть</button>
+            </div>
+            {% endfor %}
+        {% else %}
+        <h2 class="empty-title">Список заказов пуст</h2>
+        {% endif %}
     </div>
-    {% else %}
-    <h2>Список заказов пуст</h2>
-    {% endif %}
 </body>
 </html>

@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Добавление товаров</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
+    <title>Список отгрузок</title>
+    <link rel="stylesheet" href="{% static 'main/css/list.css' %}">
 </head>
 <body>
     <div class="navbar">
@@ -14,30 +14,21 @@
         <a href="{% url 'supplies' %}">Поставки</a>
         <a href="{% url 'reports' %}">Отчёты</a>
     </div>
-    {% if shipments|length > 0 %}
-    <h2>Список отгрузок</h2>
-    <div class = "content">
-        <table>
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Время отгрузки</th>
-                    <th>Кнопка</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for shipment in shipments %}
-                <tr>
-                    <td>{{ shipment.id }}</td>
-                    <td>{{ shipment.shipDate }}</td>
-                    <td><button class="button" onclick="location.href='{% url 'shipment_detail' shipment_number=shipment.id %}'">Открыть</button></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    <div class="supplies-header">Список отгрузок</div>
+    <div class="content">
+        {% if shipments|length > 0 %}
+            {% for shipment in shipments %}
+            <div class="supply-item">
+                <div class="supply-info">
+                    <div class="supply-id">№ {{ shipment.id }}</div>
+                    <div class="supply-dates">{{ shipment.shipDate }}</div>
+                </div>
+                <button class="button" onclick="location.href='{% url 'shipment_detail' shipment_number=shipment.id %}'">Открыть</button>
+            </div>
+            {% endfor %}
+        {% else %}
+        <h2 class="empty-title">Список отгрузок пуст</h2>
+        {% endif %}
     </div>
-    {% else %}
-    <h2>Список поставок пуст</h2>
-    {% endif %}
 </body>
 </html>
