@@ -14,21 +14,26 @@
         <a href="{% url 'supplies' %}">Поставки</a>
         <a href="{% url 'reports' %}">Отчёты</a>
     </div>
-    <div class="supplies-header">Список поставщиков</div>
-    <div class="content">
-        {% if suppliers|length > 0 %}
-            {% for supplier in suppliers %}
-            <div class="supply-item">
-                <div class="supply-info">
-                    <div class="supply-id">{{ supplier.title }}</div>
-                    <div class="supply-supplier">{{ supplier.phone }}</div>
-                    <div class="supply-dates">{{ supplier.address }} - {{ supplier.director }}</div>
-                </div>
+    {% if suppliers|length > 0 %}
+    <h1 class="supplies-header">Список поставщиков</h1>
+    <div class="center-container">
+        <div class="content-container">
+<!--            <h2 class="content-title">Поставщики</h2>-->
+            <div class="content">
+                {% for supplier in suppliers %}
+                    <div class="supply-item">
+                        <div class="supply-info">
+                            <div class="supply-id">{{ supplier.title }}</div>
+                            <div class="supply-supplier">{{ supplier.phone }}</div>
+                            <div class="supply-dates">{{ supplier.address }} - {{ supplier.director }}</div>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
-            {% endfor %}
-        {% else %}
-        <h2 class="empty-title">Список поставщиков пуст</h2>
-        {% endif %}
+        </div>
     </div>
+    {% else %}
+    <h2 class="empty-title">Список поставщиков пуст</h2>
+    {% endif %}
 </body>
 </html>

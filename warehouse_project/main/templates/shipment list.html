@@ -14,21 +14,26 @@
         <a href="{% url 'supplies' %}">Поставки</a>
         <a href="{% url 'reports' %}">Отчёты</a>
     </div>
-    <div class="supplies-header">Список отгрузок</div>
-    <div class="content">
-        {% if shipments|length > 0 %}
-            {% for shipment in shipments %}
-            <div class="supply-item">
-                <div class="supply-info">
-                    <div class="supply-id">№ {{ shipment.id }}</div>
-                    <div class="supply-dates">{{ shipment.shipDate }}</div>
-                </div>
-                <button class="button" onclick="location.href='{% url 'shipment_detail' shipment_number=shipment.id %}'">Открыть</button>
+    {% if shipments|length > 0 %}
+    <h1 class="supplies-header">Список отгрузок</h1>
+    <div class="center-container">
+        <div class="content-container">
+            <h2 class="content-title">История отгрузок</h2>
+            <div class="content">
+                {% for shipment in shipments %}
+                    <div class="supply-item">
+                        <div class="supply-info">
+                            <div class="supply-id">№ {{ shipment.id }}</div>
+                            <div class="supply-supplier">{{ shipment.shipDate }}</div>
+                        </div>
+                            <button class="button" onclick="location.href='{% url 'shipment_detail' shipment_number=shipment.id %}'">Открыть</button>
+                    </div>
+                {% endfor %}
             </div>
-            {% endfor %}
-        {% else %}
-        <h2 class="empty-title">Список отгрузок пуст</h2>
-        {% endif %}
+        </div>
     </div>
+    {% else %}
+    <h2 class="empty-title">Список отгрузок пуст</h2>
+    {% endif %}
 </body>
 </html>

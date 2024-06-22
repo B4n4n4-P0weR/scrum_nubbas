@@ -14,21 +14,26 @@
         <a href="{% url 'supplies' %}">Поставки</a>
         <a href="{% url 'reports' %}">Отчёты</a>
     </div>
-    <div class="supplies-header">Список продаж</div>
-    <div class="content">
-        {% if sales|length > 0 %}
-            {% for sale in sales %}
-            <div class="supply-item">
-                <div class="supply-info">
-                    <div class="supply-id">№ {{ sale.id }}</div>
-                    <div class="supply-dates">{{ sale.saleDate }}</div>
-                </div>
-                <button class="button" onclick="location.href='{% url 'get_sale' sale_number=sale.id %}'">Открыть</button>
+    {% if sales|length > 0 %}
+    <h1 class="supplies-header">Список продаж</h1>
+    <div class="center-container">
+        <div class="content-container">
+            <h2 class="content-title">История продаж</h2>
+            <div class="content">
+                {% for sale in sales %}
+                    <div class="supply-item">
+                        <div class="supply-info">
+                            <div class="supply-id">№ {{ sale.id }}</div>
+                            <div class="supply-dates">{{ sale.saleDate }}</div>
+                        </div>
+                           <button class="button" onclick="location.href='{% url 'get_sale' sale_number=sale.id %}'">Открыть</button>
+                    </div>
+                {% endfor %}
             </div>
-            {% endfor %}
-        {% else %}
-        <h2 class="empty-title">Список заказов пуст</h2>
-        {% endif %}
+        </div>
     </div>
+    {% else %}
+    <h2 class="empty-title">Список продаж пуст</h2>
+    {% endif %}
 </body>
 </html>

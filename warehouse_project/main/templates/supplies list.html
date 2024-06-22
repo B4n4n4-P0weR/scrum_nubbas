@@ -15,22 +15,27 @@
         <a href="{% url 'supplies' %}">Поставки</a>
         <a href="{% url 'reports' %}">Отчёты</a>
     </div>
-    <div class="supplies-header">Список поставок</div>
-    <div class="content">
-        {% if supplies|length > 0 %}
-            {% for supply in supplies %}
-            <div class="supply-item">
-                <div class="supply-info">
-                    <div class="supply-id">№ {{ supply.id }}</div>
-                    <div class="supply-supplier">{{ supply.supplierId }}</div>
-                    <div class="supply-dates">{{ supply.orderDate }} - {{ supply.receivingDate }}</div>
-                </div>
-                <button class="button" onclick="location.href='{% url 'supply_detail' supply_number=supply.id %}'">Открыть</button>
+    {% if supplies|length > 0 %}
+    <h1 class="supplies-header">Список поставок</h1>
+    <div class="center-container">
+        <div class="content-container">
+            <h2 class="content-title">История поставок</h2>
+            <div class="content">
+                {% for supply in supplies %}
+                    <div class="supply-item">
+                        <div class="supply-info">
+                            <div class="supply-id">№ {{ supply.id }}</div>
+                            <div class="supply-supplier">{{ supply.supplierId }}</div>
+                            <div class="supply-dates">{{ supply.orderDate }} - {{ supply.receivingDate }}</div>
+                        </div>
+                        <button class="button" onclick="location.href='{% url 'supply_detail' supply_number=supply.id %}'">Открыть</button>
+                    </div>
+                {% endfor %}
             </div>
-            {% endfor %}
-        {% else %}
-        <h2 class="empty-title">Список поставок пуст</h2>
-        {% endif %}
+        </div>
     </div>
+    {% else %}
+    <h2 class="empty-title">Список поставок пуст</h2>
+    {% endif %}
 </body>
 </html>
