@@ -18,7 +18,10 @@
     <h1 class="supplies-header">Список поставщиков</h1>
     <div class="center-container">
         <div class="content-container">
-<!--            <h2 class="content-title">Поставщики</h2>-->
+            <button class="one-button-container" onclick="location.href='{% url 'supplier_add' %}'">Добавить поставщика</button>
+        </div>
+        <div class="content-container">
+            <h2 class="content-title">Поставщики</h2>
             <div class="content">
                 {% for supplier in suppliers %}
                     <div class="supply-item">

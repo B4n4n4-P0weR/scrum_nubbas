@@ -18,7 +18,10 @@
     <h1 class="supplies-header">Список товаров</h1>
     <div class="center-container">
         <div class="content-container">
-<!--            <h2 class="content-title">Товарык</h2>-->
+            <button class="one-button-container" onclick="location.href='{% url 'product_add' %}'">Добавить товар</button>
+        </div>
+        <div class="content-container">
+            <h2 class="content-title">Товары</h2>
             <div class="content">
                 {% for product in products %}
                     <div class="supply-item">

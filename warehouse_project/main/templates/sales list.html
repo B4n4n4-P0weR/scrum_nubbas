@@ -18,6 +18,9 @@
     <h1 class="supplies-header">Список продаж</h1>
     <div class="center-container">
         <div class="content-container">
+            <button class="one-button-container" onclick="location.href='{% url 'sales_add' %}'">Добавить продажу</button>
+        </div>
+        <div class="content-container">
             <h2 class="content-title">История продаж</h2>
             <div class="content">
                 {% for sale in sales %}

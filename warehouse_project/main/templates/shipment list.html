@@ -18,6 +18,9 @@
     <h1 class="supplies-header">Список отгрузок</h1>
     <div class="center-container">
         <div class="content-container">
+            <button class="one-button-container" onclick="location.href='{% url 'shipment_add' %}'">Добавить отгрузку</button>
+        </div>
+        <div class="content-container">
             <h2 class="content-title">История отгрузок</h2>
             <div class="content">
                 {% for shipment in shipments %}
