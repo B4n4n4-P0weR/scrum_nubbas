@@ -1,3 +1,4 @@
+from datetime import timedelta
 from django import forms
 from .models import *
 
@@ -86,3 +87,8 @@ class ProductsInStockForm(forms.ModelForm):
             "amount": "Количество",
             "warehouse": "На складе",  # BooleanField
         }
+
+
+class SoldReportForm(forms.Form):
+    start_date = forms.DateTimeField(required=False, label="С", initial=datetime.now() - timedelta(days=30))
+    end_date = forms.DateTimeField(required=False, label="До", initial=datetime.now())
