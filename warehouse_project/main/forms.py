@@ -6,10 +6,10 @@ from .models import *
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = [ #"code", 
+        fields = [  # "code",
             "title", "manufacturer", "price"]
         labels = {
-            #"code": "Артикул",
+            # "code": "Артикул",
             "title": "Наименование",
             "manufacturer": "Производитель",
             "price": "Цена продаж",
@@ -25,13 +25,16 @@ class SaleForm(forms.ModelForm):
 
 class SaleContentForm(forms.ModelForm):
     product = forms.ModelChoiceField(
-        queryset=Product.objects.filter(productsinstock__warehouse=False).distinct(),
+        queryset=Product.objects.filter(
+            productsinstock__warehouse=False).distinct(),
         label="Товар",
     )
+    total = forms.CharField(required=False, initial=0,
+                            widget=forms.TextInput(attrs={'class': 'total', 'readonly': 'readonly'}), label="Итого")
 
     class Meta:
         model = SaleContent
-        fields = ["product", "amount"]
+        fields = ["product", "amount", "total"]
         labels = {"amount": "Количество"}
 
 
@@ -90,5 +93,7 @@ class ProductsInStockForm(forms.ModelForm):
 
 
 class SoldReportForm(forms.Form):
-    start_date = forms.DateTimeField(required=False, label="С", initial=datetime.now() - timedelta(days=30))
-    end_date = forms.DateTimeField(required=False, label="До", initial=datetime.now())
+    start_date = forms.DateTimeField(
+        required=False, label="С", initial=datetime.now() - timedelta(days=30))
+    end_date = forms.DateTimeField(
+        required=False, label="До", initial=datetime.now())
