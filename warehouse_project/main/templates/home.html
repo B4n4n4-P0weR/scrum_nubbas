@@ -1,25 +1,14 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Система учета товаров</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
-</head>
-<body>
-    <div class="navbar">
-        <a class="navbar-button" href="{% url 'sales' %}">Продажи</a>
-        <a class="navbar-button" href="{% url 'supplies' %}">Поставки</a>
-        <a class="navbar-button" href="{% url 'reports' %}">Отчёты</a>
-    </div>
-    <div class="main">
+{% extends 'templet.html' %}
+{% block title %} Система учета товаров {% endblock %}
+
+{% block main %}
+    <div class="company-info">
         <h1>Добро пожаловать в систему учёта товаров</h1>
-        <div class="button-container">
-            <a class="button" href="{% url 'sales' %}">Продажи</a>
-            <a class="button" href="{% url 'supplies' %}">Поставки</a>
-            <a class="button" href="{% url 'reports' %}">Отчёты</a>
-        </div>
+        <p>Мы предоставляем лучшие решения для управления складами.</p>
     </div>
-</body>
-</html>
+    <div class="button-container">
+        <a class="button" href="{% url 'sales' %}">Продажи</a>
+        <a class="button" href="{% url 'supplies' %}">Поставки</a>
+        <a class="button" href="{% url 'reports' %}">Отчёты</a>
+    </div>
+{% endblock %}
