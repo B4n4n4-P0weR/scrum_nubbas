@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Добавление товаров</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
+    <title>Список отгрузок</title>
+    <link rel="stylesheet" href="{% static 'main/css/list.css' %}">
 </head>
 <body>
     <div class="navbar">
@@ -15,29 +15,37 @@
         <a href="{% url 'reports' %}">Отчёты</a>
     </div>
     {% if shipments|length > 0 %}
-    <h2>Список отгрузок</h2>
-    <div class = "content">
-        <table>
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Время отгрузки</th>
-                    <th>Кнопка</th>
-                </tr>
-            </thead>
-            <tbody>
+    <h1 class="supplies-header">Список отгрузок</h1>
+    <div class="center-container">
+        <div class="content-container">
+            <h2 class="content-title">Поиск отгрузки</h2>
+            <div class="search-container">
+                <form action="{% url 'get_shipment' %}" method="get" class="search-form">
+                    <input type="text" name="shipment_number" placeholder="Введите номер отгрузки" required class="search-field">
+                    <button class="button">Поиск</button>
+                </form>
+            </div>
+        </div>
+        <div class="content-container">
+            <button class="one-button-container" onclick="location.href='{% url 'shipment_add' %}'">Добавить отгрузку</button>
+        </div>
+        <div class="content-container">
+            <h2 class="content-title">История отгрузок</h2>
+            <div class="content">
                 {% for shipment in shipments %}
-                <tr>
-                    <td>{{ shipment.id }}</td>
-                    <td>{{ shipment.shipDate }}</td>
-                    <td><button class="button" onclick="location.href='{% url 'shipment_detail' shipment_number=shipment.id %}'">Открыть</button></td>
-                </tr>
+                    <div class="supply-item">
+                        <div class="supply-info">
+                            <div class="supply-id">№ {{ shipment.id }}</div>
+                            <div class="supply-supplier">{{ shipment.shipDate }}</div>
+                        </div>
+                            <button class="button" onclick="location.href='{% url 'shipment_detail' shipment_number=shipment.id %}'">Открыть</button>
+                    </div>
                 {% endfor %}
-            </tbody>
-        </table>
+            </div>
+        </div>
     </div>
     {% else %}
-    <h2>Список поставок пуст</h2>
+    <h2 class="empty-title">Список отгрузок пуст</h2>
     {% endif %}
 </body>
 </html>

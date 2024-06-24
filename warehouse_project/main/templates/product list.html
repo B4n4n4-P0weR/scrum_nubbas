@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Список товаров</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/list.css' %}">
 </head>
 <body>
     <div class="navbar">
@@ -15,31 +15,28 @@
         <a href="{% url 'reports' %}">Отчёты</a>
     </div>
     {% if products|length > 0 %}
-    <h2>Список товаров</h2>
-    <div class = "content">
-        <table>
-            <thead>
-                <tr>
-                    <th>Артикул</th>
-                    <th>Наименование</th>
-                    <th>Производитель</th>
-                    <th>Цена продажи</th>
-                </tr>
-            </thead>
-            <tbody>
+    <h1 class="supplies-header">Список товаров</h1>
+    <div class="center-container">
+        <div class="content-container">
+            <button class="one-button-container" onclick="location.href='{% url 'product_add' %}'">Добавить товар</button>
+        </div>
+        <div class="content-container">
+            <h2 class="content-title">Товары</h2>
+            <div class="content">
                 {% for product in products %}
-                <tr>
-                    <td>{{ product.code }}</td>
-                    <td>{{ product.title }}</td>
-                    <td>{{ product.manufacturer }}</td>
-                    <td>{{ product.price }} руб.</td>
-                </tr>
+                    <div class="supply-item">
+                        <div class="supply-info">
+                            <div class="supply-id">№ {{ product.code }}</div>
+                            <div class="supply-supplier">{{ product.title }}</div>
+                            <div class="supply-dates">{{ product.manufacturer }} - {{ product.price }} руб.</div>
+                        </div>
+                    </div>
                 {% endfor %}
-            </tbody>
-        </table>
+            </div>
+        </div>
     </div>
     {% else %}
-    <h2>Список товаров пуст</h2>
+    <h2 class="empty-title">Список товаров пуст</h2>
     {% endif %}
 </body>
 </html>

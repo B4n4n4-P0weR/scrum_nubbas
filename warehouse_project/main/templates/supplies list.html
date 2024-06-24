@@ -4,8 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
     <title>Список поставок</title>
+    <link rel="stylesheet" href="{% static 'main/css/list.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,700&amp;display=swap" rel="stylesheet">
+<!--    <style>-->
+
+<!--    </style>-->
 </head>
 <body>
     <div class="navbar">
@@ -15,33 +19,38 @@
         <a href="{% url 'reports' %}">Отчёты</a>
     </div>
     {% if supplies|length > 0 %}
-    <h2>Список поставок</h2>
-    <div class = "content">
-        <table>
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Поставщик</th>
-                    <th>Время заказа</th>
-                    <th>Время получения</th>
-                    <th>Кнопка</th>
-                </tr>
-            </thead>
-            <tbody>
+    <h1 class="supplies-header">Список поставок</h1>
+    <div class="center-container">
+        <div class="content-container">
+            <h2 class="content-title">Поиск поставки</h2>
+            <div class="search-container">
+                <form action="{% url 'get_supply' %}" method="get" class="search-form">
+                    <input type="text" name="supply_number" placeholder="Введите номер поставки" required class="search-field">
+                    <button class="button">Поиск</button>
+                </form>
+            </div>
+        </div>
+        <div class="content-container">
+            <button class="one-button-container" onclick="location.href='{% url 'supplies_add' %}'">Добавить поставку</button>
+        </div>
+        <div class="content-container">
+            <h2 class="content-title">История поставок</h2>
+            <div class="content">
                 {% for supply in supplies %}
-                <tr>
-                    <td>{{ supply.id }}</td>
-                    <td>{{ supply.supplierId }}</td>
-                    <td>{{ supply.orderDate }}</td>
-                    <td>{{ supply.receivingDate }}</td>
-                    <td><button class="button" onclick="location.href='{% url 'supply_detail' supply_number=supply.id %}'">Открыть</button></td>
-                </tr>
+                    <div class="supply-item">
+                        <div class="supply-info">
+                            <div class="supply-id">№ {{ supply.id }}</div>
+                            <div class="supply-supplier">{{ supply.supplierId }}</div>
+                            <div class="supply-dates">{{ supply.orderDate }} - {{ supply.receivingDate }}</div>
+                        </div>
+                        <button class="button" onclick="location.href='{% url 'supply_detail' supply_number=supply.id %}'">Открыть</button>
+                    </div>
                 {% endfor %}
-            </tbody>
-        </table>
+            </div>
+        </div>
     </div>
     {% else %}
-    <h2>Список поставок пуст</h2>
+    <h2 class="empty-title">Список поставок пуст</h2>
     {% endif %}
 </body>
 </html>
