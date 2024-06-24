@@ -11,6 +11,13 @@ def product_add(request):
     if request.method == "POST":
         form = ProductForm(request.POST)
         if form.is_valid():
+            title = form.cleaned_data['title']
+            manufacturer = form.cleaned_data['manufacturer']
+
+            products = Product.objects.filter(title=title, manufacturer=manufacturer)
+            if len(products) > 0:
+                return render(request, "product add.html", {"form": form, "result": 'Такой товар уже существует'})
+
             form.save()
             result = f"Добавлено: {form.cleaned_data['title']} - {form.cleaned_data['price']} руб."
             form = ProductForm()
