@@ -1,11 +1,29 @@
 from django.shortcuts import render, HttpResponse
-from django.db.models import Sum
+from django.db.models import Sum, OuterRef, Subquery, F
 from ..forms import *
 from ..models import *
 
 
 def report_needful_stuff(request):
-    return render(request, 'report needful stuff.html')
+    start_date = datetime.now() - timedelta(days=30)
+    end_date = datetime.now()
+    storage_subquery = ProductsInStock.objects.filter(
+        productId=OuterRef('product'), warehouse=True).values('amount')[:1]
+
+    report_data = (
+        SaleContent.objects
+        .filter(sale__saleDate__range=(start_date, end_date))
+        .values('product')
+        .annotate(
+            total_amount=Sum('amount'),
+            storage_amount=Subquery(storage_subquery)
+        )
+        .filter(total_amount__gte=F('storage_amount'))
+    )
+    for data in report_data:
+        product = Product.objects.get(pk=data['product'])
+        data['product'] = str(product)
+    return render(request, 'report needful stuff.html', {'report_data': report_data})
 
 
 def report_sold_stuff(request):

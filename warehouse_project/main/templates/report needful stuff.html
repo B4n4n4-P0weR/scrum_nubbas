@@ -15,7 +15,22 @@
         <a href="{% url 'reports' %}">Отчёты</a>
     </div>
     <h1>Необходимость заказа</h1>
-    <p>А тут пока что ничего и нет, ХА</p>
-    <button class="confirm_button">Сформировать</button>
+    <p>Отчет показывает список товаров, которых за последние 30 дней продано больше, чем сейчас есть на складе</p>
+    {% if report_data is not none %}
+    <table>
+        <thead>
+            <tr>
+                <th>Товар</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in report_data %}
+            <tr>
+                <td>{{ data.product }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
 </body>
 </html>
