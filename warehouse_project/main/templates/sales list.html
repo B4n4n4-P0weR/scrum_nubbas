@@ -15,7 +15,7 @@
         <a href="{% url 'reports' %}">Отчёты</a>
     </div>
     {% if sales|length > 0 %}
-    <h1 class="supplies-header">Список продаж</h1>
+    <h1 class="header">Список продаж</h1>
     <div class="center-container">
         <div class="content-container">
             <button class="one-button-container" onclick="location.href='{% url 'sales_add' %}'">Добавить продажу</button>
@@ -24,12 +24,12 @@
             <h2 class="content-title">История продаж</h2>
             <div class="content">
                 {% for sale in sales %}
-                    <div class="supply-item">
-                        <div class="supply-info">
-                            <div class="supply-id">№ {{ sale.id }}</div>
-                            <div class="supply-dates">{{ sale.saleDate }}</div>
+                    <div class="item">
+                        <div class="info">
+                            <div class="id">№ {{ sale.id }}</div>
+                            <div class="dates">{{ sale.saleDate }}</div>
                         </div>
-                           <button class="button" onclick="location.href='{% url 'get_sale' sale_number=sale.id %}'">Открыть</button>
+                           <button class="button" onclick="location.href='{% url 'sale_detail' sale_number=sale.id %}'">Открыть</button>
                     </div>
                 {% endfor %}
             </div>

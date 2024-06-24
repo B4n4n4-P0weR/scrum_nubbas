@@ -15,7 +15,7 @@
         <a href="{% url 'reports' %}">Отчёты</a>
     </div>
     {% if suppliers|length > 0 %}
-    <h1 class="supplies-header">Список поставщиков</h1>
+    <h1 class="header">Список поставщиков</h1>
     <div class="center-container">
         <div class="content-container">
             <button class="one-button-container" onclick="location.href='{% url 'supplier_add' %}'">Добавить поставщика</button>
@@ -24,11 +24,11 @@
             <h2 class="content-title">Поставщики</h2>
             <div class="content">
                 {% for supplier in suppliers %}
-                    <div class="supply-item">
-                        <div class="supply-info">
-                            <div class="supply-id">{{ supplier.title }}</div>
+                    <div class="item">
+                        <div class="info">
+                            <div class="id">{{ supplier.title }}</div>
                             <div class="supply-supplier">{{ supplier.phone }}</div>
-                            <div class="supply-dates">{{ supplier.address }} - {{ supplier.director }}</div>
+                            <div class="dates">{{ supplier.address }} - {{ supplier.director }}</div>
                         </div>
                     </div>
                 {% endfor %}
