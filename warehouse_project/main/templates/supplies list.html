@@ -7,9 +7,9 @@
     <title>Список поставок</title>
     <link rel="stylesheet" href="{% static 'main/css/list.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,700&amp;display=swap" rel="stylesheet">
-<!--    <style>-->
+    <style>
 
-<!--    </style>-->
+    </style>
 </head>
 <body>
     <div class="navbar">
@@ -19,7 +19,7 @@
         <a href="{% url 'reports' %}">Отчёты</a>
     </div>
     {% if supplies|length > 0 %}
-    <h1 class="supplies-header">Список поставок</h1>
+    <h1 class="header">Список поставок</h1>
     <div class="center-container">
         <div class="content-container">
             <h2 class="content-title">Поиск поставки</h2>
@@ -37,11 +37,11 @@
             <h2 class="content-title">История поставок</h2>
             <div class="content">
                 {% for supply in supplies %}
-                    <div class="supply-item">
-                        <div class="supply-info">
-                            <div class="supply-id">№ {{ supply.id }}</div>
+                    <div class="item">
+                        <div class="info">
+                            <div class="id">№ {{ supply.id }}</div>
                             <div class="supply-supplier">{{ supply.supplierId }}</div>
-                            <div class="supply-dates">{{ supply.orderDate }} - {{ supply.receivingDate }}</div>
+                            <div class="dates">{{ supply.orderDate }} - {{ supply.receivingDate }}</div>
                         </div>
                         <button class="button" onclick="location.href='{% url 'supply_detail' supply_number=supply.id %}'">Открыть</button>
                     </div>

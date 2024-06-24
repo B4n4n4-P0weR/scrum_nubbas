@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Отгрузка {{ shipment_number }}</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/one.css' %}">
 </head>
 <body>
     <div class="navbar">
@@ -14,29 +14,30 @@
         <a href="{% url 'supplies' %}">Поставки</a>
         <a href="{% url 'reports' %}">Отчёты</a>
     </div>
-    <h1>Отгрузка {{ shipment_number }}</h1>
-    <div class = "content">
-        <p>Дата отгрузки: {{ shipment.shipDate }}</p>
-        <table>
-        <thead>
-            <tr>
-                <th>Наименование</th>
-                <th>Количество</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for content in shipment_content %}
-            <tr>
-                <td>{{ content.productId }}</td>
-                <td>{{ content.amount }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-        </table>
-        {{ result }}
-    </div>
-    <div class="button-container">
-        <button class="edit_button">Изменить</button>
+    <h1 class="header">Отгрузка № {{ shipment_number }}</h1>
+    <div class="center-container">
+        <div class="content-container">
+            <div class="content">
+                 <div class="info">
+                     Дата отгрузки: {{ shipment.shipDate }}
+                 </div>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <h2 class="content-title">Содержание отгрузки</h2>
+            <div class="content">
+                {% for content in shipment_content %}
+                    <div class="item">
+                            <div class="info">
+                                <div class="id">{{ content.productId }}</div>
+                                <div class="dates">{{ content.amount }}</div>
+                            </div>
+                    </div>
+                {% endfor %}
+                {{ result }}
+            </div>
+        </div>
     </div>
 </body>
 </html>
