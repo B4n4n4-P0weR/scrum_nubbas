@@ -6,7 +6,7 @@ from ..models import *
 def home(request):
     return render(request, "home.html")
 
-
+# vr 1
 def sales(request):
     return render(request, "sales.html")
 
@@ -17,6 +17,18 @@ def supplies(request):
 
 def reports(request):
     return render(request, "reports.html")
+
+# vr 2
+def seller(request):
+    return render(request, "seller.html")
+
+
+def manager(request):
+    return render(request, "manager.html")
+
+
+def storekeeper(request):
+    return render(request, "storekeeper.html")
 
 
 def search(request, search_type):

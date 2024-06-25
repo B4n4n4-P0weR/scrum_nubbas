@@ -8,6 +8,12 @@ urlpatterns = [
     path('supplies/', views.supplies, name='supplies'),
     path('reports/', views.reports, name='reports'),
 
+    # главные экраны vr2
+    path('seller/', views.seller, name='seller'),
+    path('manager/', views.manager, name='manager'),
+    path('storekeeper/', views.storekeeper, name='storekeeper'),
+
+
     # поиск
     path('search/<str:search_type>/', views.search, name='search'),
     # получение информации по номеру при поиске
