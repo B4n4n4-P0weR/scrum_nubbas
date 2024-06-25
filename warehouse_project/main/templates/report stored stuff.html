@@ -5,7 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Товары на складе</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/list.css' %}">
+    <style>
+
+    </style>
 </head>
 <body>
     <div class="navbar">
@@ -15,24 +18,21 @@
         <a href="{% url 'reports' %}">Отчёты</a>
     </div>
     {% if productsInStock|length > 0 %}
-    <h2>Товары на складе</h2>
-    <div class = "content">
-        <table>
-            <thead>
-                <tr>
-                    <th>Товар</th>
-                    <th>Количество</th>
-                </tr>
-            </thead>
-            <tbody>
+    <h1 class="header">Товары на складе</h1>
+    <div class="center-container">
+        <div class="content-container">
+            <h2 class="content-title">Товары</h2>
+            <div class="content">
                 {% for product in productsInStock %}
-                <tr>
-                    <td>{{ product.productId }}</td>
-                    <td>{{ product.amount }}</td>
-                </tr>
+                    <div class="item">
+                        <div class="info">
+                            <div class="id">{{ product.productId }}</div>
+                            <div class="supply-supplier">{{ product.amount }}</div>
+                        </div>
+                    </div>
                 {% endfor %}
-            </tbody>
-        </table>
+            </div>
+        </div>
     </div>
     {% else %}
     <h2>На складе нет товаров</h2>
