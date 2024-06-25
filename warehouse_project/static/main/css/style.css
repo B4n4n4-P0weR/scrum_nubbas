@@ -12,7 +12,7 @@ body {
 .sidebar {
     display: flex;
     flex-direction: column;
-    background-color: #a9927d;
+    background-color: #D5B778;
     padding: 20px;
     height: 100vh;
     width: 200px;
@@ -72,7 +72,7 @@ h1 {
   margin: 30px; /* отступ между кнопками */
   font-size: 1.5em; /* увеличиваем размер шрифта */
   padding: 20px; /* добавляем внутренний отступ для кнопок */
-  background-color: #a9927d;
+  background-color: #c1a56d;
   color: white;
   border-radius: 10px;
   text-decoration: none;
