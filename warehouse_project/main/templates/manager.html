@@ -1,0 +1,24 @@
+{% extends 'templet.html' %}
+{% block title %} Менеджер {% endblock %}
+
+{% block main %}
+<h1>Cистема учёта товаров</h1>
+<p>Менеджер</p>
+<div class="button-container">
+	<button class="button" onclick="location.href='{% url 'product_list' %}'">Список товаров</button>
+	<button class="button" onclick="location.href='{% url 'product_add' %}'">Добавить товар</button>
+
+	<button class="button" onclick="location.href='{% url 'supplier_list' %}'">Список поставщиков</button>
+	<button class="button" onclick="location.href='{% url 'supplier_add' %}'">Добавить поставщика</button>
+
+	<button class="button" onclick="location.href='{% url 'supplies_list' %}'">Список поставок</button>
+	<button class="button" onclick="location.href='{% url 'supplies_add' %}'">Добавить поставку</button>
+
+	<button class="button" onclick="location.href='{% url 'report_needful_stuff' %}'" 
+		title="Генерация отчетов о необходимости заказа (чего мало на складе, но много покупают)">Необходимость заказа</button>
+    <button class="button" onclick="location.href='{% url 'report_sold_stuff' %}'" 
+		title="Генерация отчетов о продажах (сколько продали)">Проданные товары</button>
+    <button class="button" onclick="location.href='{% url 'report_stored_stuff' %}'" 
+		title="Генерация отчетов о состоянии склада (сколько товаров есть)">Товары на складе</button>
+</div>
+{% endblock %}
