@@ -1,30 +1,16 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Добавление товара</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
-</head>
-<body>
-    <div class="navbar">
-        <a href="{% url 'supplies' %}">Назад</a>
-        <a href="{% url 'sales' %}">Продажи</a>
-        <a href="{% url 'supplies' %}">Поставки</a>
-        <a href="{% url 'reports' %}">Отчёты</a>
-    </div>
+{% extends 'templet.html' %}
+{% block title %} Добавление товара {% endblock %}
+
+{% block main %}
     <h1>Добавить товар</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button class="confirm_button" type="submit">Добавить товар</button>
+        <div class="button-container">
+        <button class="button" type="submit">Добавить товар</button>
         {% if result %}
             <br>{{ result }}
         {% endif %}
+        </div>
     </form>
-</body>
-</html>
-
-
-
+{% endblock %}

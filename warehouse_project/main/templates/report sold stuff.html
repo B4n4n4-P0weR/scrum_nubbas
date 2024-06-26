@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Проданные товары</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/style2.css' %}">
 </head>
 
 <body>
@@ -16,29 +16,31 @@
         <a href="{% url 'supplies' %}">Поставки</a>
         <a href="{% url 'reports' %}">Отчёты</a>
     </div>
-    <h1>Проданные товары</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="confirm_button" type="submit">Сформировать</button>
-    </form>
+    <h1 class="header">Проданные товары</h1>
+    <div class="center-container">
+        <div class="content-container">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="confirm_button" type="submit">Сформировать</button>
+            </form>
+        </div>
     {% if sales_data is not none %}
-    <table>
-        <thead>
-            <tr>
-                <th>Товар</th>
-                <th>Количество проданых</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for sale in sales_data %}
-            <tr>
-                <td>{{ sale.product }}</td>
-                <td>{{ sale.total_amount }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+        <div class="content-container">
+            <h2 class="content-title">Товары</h2>
+            <div class="content">
+                {% for sale in sales_data %}
+                    <div class="item">
+                        <div class="info">
+                            <div class="id">{{ sale.product }}</div>
+                            <div class="supply-supplier">{{ sale.total_amount }}</div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% else %}
     {% endif %}
 </body>
 

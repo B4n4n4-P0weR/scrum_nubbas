@@ -1,0 +1,14 @@
+{% extends 'templet.html' %}
+{% block title %} кладовщик {% endblock %}
+
+{% block main %}
+<h1>Cистема учёта товаров</h1>
+<p>Кладовщик</p>
+<div class="button-container">
+	<button class="button" onclick="location.href='{% url 'shipment_list' %}'">Отгрузоки</button>
+<!--	<button class="button" onclick="location.href='{% url 'shipment_add' %}'">Добавить отгрузку</button>-->
+	<button class="button" onclick="location.href='{% url 'report_stored_stuff' %}'" 
+		title="Генерация отчетов о состоянии склада (сколько товаров есть)">Товары на складе</button>
+	<button class="button" onclick="location.href='{% url 'supplies_list' %}'">Поставки</button>
+</div>
+{% endblock %}

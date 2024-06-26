@@ -1,22 +1,11 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Список отгрузок</title>
-    <link rel="stylesheet" href="{% static 'main/css/list.css' %}">
-</head>
-<body>
-    <div class="navbar">
-        <a href="{% url 'sales' %}">Назад</a>
-        <a href="{% url 'sales' %}">Продажи</a>
-        <a href="{% url 'supplies' %}">Поставки</a>
-        <a href="{% url 'reports' %}">Отчёты</a>
-    </div>
-    {% if shipments|length > 0 %}
+{% extends 'templet list.html' %}
+{% block title %} Список отгрузок {% endblock %}
+
+{% block main %}
+    
     <h1 class="header">Список отгрузок</h1>
     <div class="center-container">
+        {% if shipments|length > 0 %}
         <div class="content-container">
             <h2 class="content-title">Поиск отгрузки</h2>
             <div class="search-container">
@@ -26,9 +15,11 @@
                 </form>
             </div>
         </div>
+        {% endif %}
         <div class="content-container">
             <button class="one-button-container" onclick="location.href='{% url 'shipment_add' %}'">Добавить отгрузку</button>
         </div>
+        {% if shipments|length > 0 %}
         <div class="content-container">
             <h2 class="content-title">История отгрузок</h2>
             <div class="content">
@@ -47,5 +38,4 @@
     {% else %}
     <h2 class="empty-title">Список отгрузок пуст</h2>
     {% endif %}
-</body>
-</html>
+{% endblock %}

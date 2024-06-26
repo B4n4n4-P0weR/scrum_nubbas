@@ -1,26 +1,10 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Список поставок</title>
-    <link rel="stylesheet" href="{% static 'main/css/list.css' %}">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,700&amp;display=swap" rel="stylesheet">
-    <style>
+{% extends 'templet list.html' %}
+{% block title %} Список поставок {% endblock %}
 
-    </style>
-</head>
-<body>
-    <div class="navbar">
-        <a href="{% url 'supplies' %}">Назад</a>
-        <a href="{% url 'sales' %}">Продажи</a>
-        <a href="{% url 'supplies' %}">Поставки</a>
-        <a href="{% url 'reports' %}">Отчёты</a>
-    </div>
-    {% if supplies|length > 0 %}
+{% block main %}
     <h1 class="header">Список поставок</h1>
     <div class="center-container">
+    {% if supplies|length > 0 %}
         <div class="content-container">
             <h2 class="content-title">Поиск поставки</h2>
             <div class="search-container">
@@ -30,10 +14,12 @@
                 </form>
             </div>
         </div>
+        {% endif %}
         <div class="content-container">
             <button class="one-button-container" onclick="location.href='{% url 'supplies_add' %}'">Добавить поставку</button>
         </div>
         <div class="content-container">
+        {% if supplies|length > 0 %}
             <h2 class="content-title">История поставок</h2>
             <div class="content">
                 {% for supply in supplies %}
@@ -52,5 +38,4 @@
     {% else %}
     <h2 class="empty-title">Список поставок пуст</h2>
     {% endif %}
-</body>
-</html>
+{% endblock %}

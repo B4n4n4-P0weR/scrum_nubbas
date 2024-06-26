@@ -10,10 +10,10 @@
 <body>
     <div class="sidebar">
         <a href="{% url 'home' %}">Главная</a>
-        <a href="{% url 'sales' %}">Продажи</a>
-        <a href="{% url 'supplies' %}">Поставки</a>
-        <a href="{% url 'reports' %}">Отчеты</a>
-        <a href="{% url 'search' 'sele'%}">Поиск</a>
+        <a href="{% url 'seller' %}">Продавец</a>
+        <a href="{% url 'manager' %}">Менеджер</a>
+        <a href="{% url 'storekeeper' %}">Кладовщик</a>
+        {% block back%}{% endblock%}
     </div>
     <div class="main">
         {% block main%}
