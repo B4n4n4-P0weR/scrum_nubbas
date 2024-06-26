@@ -13,6 +13,7 @@
         <a href="{% url 'seller' %}">Продавец</a>
         <a href="{% url 'manager' %}">Менеджер</a>
         <a href="{% url 'storekeeper' %}">Кладовщик</a>
+        {% block back%}{% endblock%}
     </div>
     <div class="main">
         {% block main%}

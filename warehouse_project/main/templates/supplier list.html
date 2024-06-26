@@ -1,26 +1,14 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Список поставщиков</title>
-    <link rel="stylesheet" href="{% static 'main/css/list.css' %}">
-</head>
-<body>
-    <div class="navbar">
-        <a href="{% url 'supplies' %}">Назад</a>
-        <a href="{% url 'sales' %}">Продажи</a>
-        <a href="{% url 'supplies' %}">Поставки</a>
-        <a href="{% url 'reports' %}">Отчёты</a>
-    </div>
-    {% if suppliers|length > 0 %}
+{% extends 'templet list.html' %}
+{% block title %} Список поставщиков {% endblock %}
+
+{% block main %}
     <h1 class="header">Список поставщиков</h1>
     <div class="center-container">
         <div class="content-container">
             <button class="one-button-container" onclick="location.href='{% url 'supplier_add' %}'">Добавить поставщика</button>
         </div>
         <div class="content-container">
+        {% if suppliers|length > 0 %}
             <h2 class="content-title">Поставщики</h2>
             <div class="content">
                 {% for supplier in suppliers %}
@@ -38,5 +26,4 @@
     {% else %}
     <h2 class="empty-title">Список поставщиков пуст</h2>
     {% endif %}
-</body>
-</html>
+{% endblock %}  

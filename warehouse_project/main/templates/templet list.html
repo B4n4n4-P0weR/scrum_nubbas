@@ -1,4 +1,12 @@
-body {
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title%}{% endblock%}</title>
+    <link rel="stylesheet" href="{% static 'main/css/list.css' %}">
+    <style>body {
     font-family: Roboto, sans-serif;
     background-color: #f5f5f5;
     margin: 0;
@@ -224,3 +232,48 @@ body {
     right: 20px;
     font-size: 14px;
 }
+</style>
+</head>
+<body>
+    <div class="sidebar">
+        <a href="{% url 'home' %}">Главная</a>
+        <a href="{% url 'seller' %}">Продавец</a>
+        <a href="{% url 'manager' %}">Менеджер</a>
+        <a href="{% url 'storekeeper' %}">Кладовщик</a>
+        {% block back%}{% endblock%}
+    </div>
+    <div class="main">
+        {% block main%}
+        {% endblock%}
+    </div>
+    
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <p><b>Продажи</b></p>
+                <a href="{% url 'sales_list' %}">Список продаж</a>
+                <a href="{% url 'shipment_list' %}">Список отгрузок</a>
+                <a href="{% url 'sales_add' %}">Добавить продажу</a>
+                <a href="{% url 'shipment_add' %}">Добавить отгрузку</a>
+            </div>
+            <div class="footer-column">
+                <p><b>Поставки</b></p>
+                <a href="{% url 'product_list' %}">Список товаров</a>
+                <a href="{% url 'supplier_list' %}">Список поставщиков</a>
+                <a href="{% url 'supplies_list' %}">Список поставок</a>
+                <a href="{% url 'product_add' %}">Добавить товар</a>
+                <a href="{% url 'supplier_add' %}">Добавить поставщика</a>
+                <a href="{% url 'supplies_add' %}">Добавить поставку</a>
+            </div>
+            <div class="footer-column">
+                <p><b>Отчёты</b></p>
+                <a href="{% url 'report_needful_stuff' %}">Необходимость заказа</a>
+                <a href="{% url 'report_sold_stuff' %}">Проданные товары</a>
+                <a href="{% url 'report_stored_stuff' %}">Товары на складе</a>
+                <a href="{% url 'report_saleroom_stuff' %}">Товары в торговом помещении</a>
+            </div>
+        </div>
+        <p class="scrum-nibbas">Scrum nibbas</p>
+    </footer>
+</body>
+</html>

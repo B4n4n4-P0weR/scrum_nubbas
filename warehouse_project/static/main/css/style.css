@@ -68,10 +68,20 @@ h1 {
 
 .button {
   display: inline-block;
-  width: 30%; 
-  margin: 30px; /* отступ между кнопками */
+  margin: 50px; /* отступ между кнопками */
   font-size: 1.5em; /* увеличиваем размер шрифта */
-  padding: 20px; /* добавляем внутренний отступ для кнопок */
+  padding: 20px 40px;
+  background-color: #c1a56d;
+  color: white;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.tittle-button {
+  display: inline-block;
+  margin: 50px; /* отступ между кнопками */
+  font-size: 1.5em; /* увеличиваем размер шрифта */
+  padding: 20px 40px;
   background-color: #c1a56d;
   color: white;
   border-radius: 10px;
