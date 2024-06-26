@@ -2,7 +2,9 @@
 {% block title %} Список поставок {% endblock %}
 
 {% block main %}
-    <h1>Добавить поставку</h1>
+    <h1 class="header">Добавить поставку</h1>
+<div class="center-container">
+        <div class="content-container">
     <form method="post">
       {% csrf_token %}
       {{ form.as_p }}
@@ -60,4 +62,6 @@
         <br />{{ result }}
       {% endif %}
     </form>
+    </div>
+</div>
 {% endblock %}

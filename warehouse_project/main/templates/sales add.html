@@ -2,11 +2,13 @@
 {% block title %} Список отгрузок {% endblock %}
 
 {% block main %}
-  <h1>Добавить продажу</h1>
+  <h1 class="header">Добавить продажу</h1>
+<div class="center-container">
+        <div class="content-container">
   <form method="post">
     {% csrf_token %}
     {% if count == 0 %}
-    <p>Нет товаров в торговом помещении</p>
+      <p>Нет товаров в торговом помещении</p>
     {% endif %}
     {{ form.as_p }}
     {{ formset.management_form }}
@@ -107,4 +109,6 @@
     <br>{{ result }}
     {% endif %}
   </form>
+ </div>
+        </div>
 {% endblock %}
