@@ -1,22 +1,7 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
+{% extends 'templet 2.html' %}
+{% block title %} Список отгрузок {% endblock %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Добавление продажи</title>
-  <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-</head>
-
-<body>
-  <div class="navbar">
-    <a href="{% url 'sales' %}">Назад</a>
-    <a href="{% url 'sales' %}">Продажи</a>
-    <a href="{% url 'supplies' %}">Поставки</a>
-    <a href="{% url 'reports' %}">Отчёты</a>
-  </div>
+{% block main %}
   <h1>Добавить продажу</h1>
   <form method="post">
     {% csrf_token %}
@@ -122,6 +107,4 @@
     <br>{{ result }}
     {% endif %}
   </form>
-</body>
-
-</html>
+{% endblock %}
