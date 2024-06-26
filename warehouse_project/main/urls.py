@@ -8,8 +8,6 @@ urlpatterns = [
     path('manager/', views.manager, name='manager'),
     path('storekeeper/', views.storekeeper, name='storekeeper'),
 
-    # поиск
-    path('search/<str:search_type>/', views.search, name='search'),
     # получение информации по номеру при поиске
     path('supplies/<int:supply_number>/', views.supply_detail, name='supply_detail'),
     path('get_supply/', views.get_supply, name='get_supply'),
