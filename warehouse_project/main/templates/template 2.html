@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title%}{% endblock%}</title>
     <link rel="stylesheet" href="{% static 'main/css/style2.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <style>
         body {
     font-family: Roboto, sans-serif;
@@ -196,6 +197,27 @@
     position: fixed;
     transition: bottom 0.3s;
     bottom: -155px;
+}
+.button_more{
+   font-size: 14px;
+    background-color: #c1a56d;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px 4px 4px 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+.button_x{
+    font-size: 10px;
+    background-color: #c1a56d;
+    color: #fff;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 4px 4px 4px 4px;
+    cursor: pointer;
+    text-transform: uppercase;
 }
 
 .footer:hover {

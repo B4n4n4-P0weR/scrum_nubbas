@@ -9,19 +9,27 @@
       {% csrf_token %}
       {{ form.as_p }}
       {{ formset.management_form }}
+        </div>
+      <div class="content-container">
       <div id="form_set">
+        <div class="content">
         {% for form in formset %}
-          <div class="formset-form">{{ form.as_table }}</div>
+          <div class="item">
+            <div class="info">
+              <div class="formset-form">{{ form.as_table }}</div>
+            </div>
+          </div>
         {% endfor %}
+        </div>
       </div>
 
       <div id="empty_form" style="display:none">
         <div class="formset-form">
             {{ formset.empty_form.as_table }}
-            <button onclick="deleteForm(this)">X</button>
+            <button class="button_x" onclick="deleteForm(this)">X</button>
         </div>
       </div>
-      <input type="button" value="Еще" id="add_more" />
+      <input class="button_more" type="button" value="Ещё" id="add_more" />
       <script>
         function deleteForm(button) {
           var form = button.closest('.formset-form');
@@ -56,10 +64,14 @@
           $('#id_form-TOTAL_FORMS').val(parseInt(form_idx) + 1)
         })
       </script>
-
-      <button class="confirm_button" type="submit">Добавить</button>
+        </div>
+        <div class="content-container">
+            <button class="button" type="submit">Добавить</button>
+        </div>
       {% if result %}
-        <br />{{ result }}
+      <div class="content-container">
+        {{ result }}
+      </div>
       {% endif %}
     </form>
     </div>

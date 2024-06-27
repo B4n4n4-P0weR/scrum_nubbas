@@ -1,114 +1,125 @@
 {% extends 'template 2.html' %}
 {% block title %} Добавить продажу {% endblock %}
-
 {% block main %}
-  <h1 class="header">Добавить продажу</h1>
+<h1 class="header">Добавить продажу</h1>
 <div class="center-container">
-        <div class="content-container">
-  <form method="post">
-    {% csrf_token %}
-    {% if count == 0 %}
-      <p>Нет товаров в торговом помещении</p>
-    {% endif %}
-    {{ form.as_p }}
-    {{ formset.management_form }}
-
-    <div id="form_set">
-      {% for form in formset %}
-      <div class="formset-form">{{ form.as_table }}</div>
-      {% endfor %}
-    </div>
-
-    <div id="empty_form" style="display:none">
-      <div class="formset-form">
-        {{ formset.empty_form.as_table }}
-        <button onclick="deleteForm(this)">X</button>
+  <div class="content-container">
+    <form method="post">
+      {% csrf_token %}
+      {% if count == 0 %}
+        <p>Нет товаров в торговом помещении</p>
+      {% endif %}
+        {{ form.as_p }}
+        {{ formset.management_form }}
       </div>
-    </div>
-    <input type="button" value="Еще" id="add_more" />
-    <div class="grand-total" id="total-price">Итоговая стоимость: 0.00 руб.</div>
-    <script>
-      function deleteForm(button) {
-        var form = button.closest('.formset-form');
-        form.remove();
-        updateFormIndices();
-      }
+      <div class="content-container">
+      <div id="form_set">
+        <div class="content">
+        {% for form in formset %}
+          <div class="item">
+            <div class="info">
+              <div class="formset-form">{{ form.as_table }}</div>
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+      </div>
 
-      function updateFormIndices() {
-        var forms = document.querySelectorAll('.formset-form');
-        var totalForms = forms.length - 1;
-        document.getElementById('id_form-TOTAL_FORMS').value = totalForms;
-
-        forms.forEach(function (form, index) {
-          form.querySelectorAll('input, select, textarea').forEach(function (input) {
-            if (input.name) {
-              input.name = input.name.replace(/form-\d+-/, 'form-' + index + '-');
-            }
-            if (input.id) {
-              input.id = input.id.replace(/form-\d+-/, 'form-' + index + '-');
-            }
-          });
-        });
-      }
-
-      $('#add_more').click(function () {
-        var form_idx = $('#id_form-TOTAL_FORMS').val()
-        $('#form_set').append(
-          $('#empty_form')
-            .html()
-            .replace(/__prefix__/g, form_idx)
-        )
-        $('#id_form-TOTAL_FORMS').val(parseInt(form_idx) + 1)
-        update()
-      })
-    </script>
-
-    <script>
-      document.addEventListener('DOMContentLoaded', update);
-      function update() {
-        function parsePrice(optionText) {
-          const match = optionText.match(/- ([\d.,]+) руб./);
-          return match ? parseFloat(match[1].replace(',', '.')) : 0;
+      <div id="empty_form" style="display:none">
+        <div class="formset-form">
+          {{ formset.empty_form.as_table }}
+          <button class="button_x" onclick="deleteForm(this)">X</button>
+        </div>
+      </div>
+      <input class="button_more" type="button" value="Ещё" id="add_more" />
+      <script>
+        function deleteForm(button) {
+          var form = button.closest('.formset-form');
+          form.remove();
+          updateFormIndices();
         }
 
-        function updateTotalPrice() {
-          let grandTotal = 0;
+        function updateFormIndices() {
+          var forms = document.querySelectorAll('.formset-form');
+          var totalForms = forms.length - 1;
+          document.getElementById('id_form-TOTAL_FORMS').value = totalForms;
+
+          forms.forEach(function (form, index) {
+            form.querySelectorAll('input, select, textarea').forEach(function (input) {
+              if (input.name) {
+                input.name = input.name.replace(/form-\d+-/, 'form-' + index + '-');
+              }
+              if (input.id) {
+                input.id = input.id.replace(/form-\d+-/, 'form-' + index + '-');
+              }
+            });
+          });
+        }
+
+        $('#add_more').click(function () {
+          var form_idx = $('#id_form-TOTAL_FORMS').val()
+          $('#form_set').append(
+            $('#empty_form')
+              .html()
+              .replace(/__prefix__/g, form_idx)
+          )
+          $('#id_form-TOTAL_FORMS').val(parseInt(form_idx) + 1)
+          update()
+        })
+      </script>
+      <script>
+        document.addEventListener('DOMContentLoaded', update);
+        function update() {
+          function parsePrice(optionText) {
+            const match = optionText.match(/- ([\d.,]+) руб./);
+            return match ? parseFloat(match[1].replace(',', '.')) : 0;
+          }
+
+          function updateTotalPrice() {
+            let grandTotal = 0;
+
+            document.querySelectorAll('.formset-form').forEach(form => {
+              const productSelect = form.querySelector('select');
+              const amountInput = form.querySelector('input[type="number"]');
+              const localTotal = form.querySelector('.total')
+
+              const selectedOption = productSelect.options[productSelect.selectedIndex];
+              const pricePerUnit = parsePrice(selectedOption.textContent);
+              const amount = parseInt(amountInput.value);
+
+              localTotal.value = pricePerUnit * amount;
+
+              grandTotal += pricePerUnit * amount;
+            });
+
+            const grandTotalDiv = document.querySelector('.grand-total');
+            grandTotalDiv.textContent = `Общая стоимость: ${grandTotal.toFixed(2)} руб.`;
+          }
 
           document.querySelectorAll('.formset-form').forEach(form => {
             const productSelect = form.querySelector('select');
             const amountInput = form.querySelector('input[type="number"]');
-            const localTotal = form.querySelector('.total')
 
-            const selectedOption = productSelect.options[productSelect.selectedIndex];
-            const pricePerUnit = parsePrice(selectedOption.textContent);
-            const amount = parseInt(amountInput.value);
+            productSelect.addEventListener('change', updateTotalPrice);
+            amountInput.addEventListener('input', updateTotalPrice);
 
-            localTotal.value = pricePerUnit * amount;
-
-            grandTotal += pricePerUnit * amount;
+            updateTotalPrice();
           });
-
-          const grandTotalDiv = document.querySelector('.grand-total');
-          grandTotalDiv.textContent = `Общая стоимость: ${grandTotal.toFixed(2)} руб.`;
         }
-
-        document.querySelectorAll('.formset-form').forEach(form => {
-          const productSelect = form.querySelector('select');
-          const amountInput = form.querySelector('input[type="number"]');
-
-          productSelect.addEventListener('change', updateTotalPrice);
-          amountInput.addEventListener('input', updateTotalPrice);
-
-          updateTotalPrice();
-        });
-      }
-    </script>
-
-    <button class="confirm_button" type="submit">Добавить</button>
-    {% if result %}
-    <br>{{ result }}
-    {% endif %}
-  </form>
- </div>
-        </div>
+      </script>
+      </div>
+      <div class="content-container">
+          <div class="grand-total" id="total-price">Итоговая стоимость: 0.00 руб.</div>
+      </div>
+      <div class="content-container">
+          <button class="button" type="submit">Добавить</button>
+      </div>
+      {% if result %}
+      <div class="content-container">
+        {{ result }}
+      </div>
+      {% endif %}
+    </form>
+   </div>
+</div>
 {% endblock %}
