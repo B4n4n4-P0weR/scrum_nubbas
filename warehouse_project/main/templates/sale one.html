@@ -1,5 +1,6 @@
 {% extends 'template 2.html' %}
 {% block title %} Заказ №{{ sale.id }} {% endblock %}
+{% block back%}<a href="{% url 'sales_list' %}">Назад</a>{% endblock%}
 
 {% block main %}
     <h1 class="header">Заказ №{{ sale.id }}</h1>

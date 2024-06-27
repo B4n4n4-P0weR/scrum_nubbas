@@ -1,5 +1,7 @@
 {% extends 'template 2.html' %}
 {% block title %} Добавить продажу {% endblock %}
+{% block back%}<a href="{% url 'sales_list' %}">Назад</a>{% endblock%}
+
 {% block main %}
 <h1 class="header">Добавить продажу</h1>
 <div class="center-container">

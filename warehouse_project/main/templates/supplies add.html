@@ -1,5 +1,6 @@
 {% extends 'template 2.html' %}
 {% block title %} Список поставок {% endblock %}
+{% block back%}<a href="{% url 'supplies_list' %}">Назад</a>{% endblock%}
 
 {% block main %}
     <h1 class="header">Добавить поставку</h1>

@@ -1,5 +1,6 @@
 {% extends 'template.html' %}
 {% block title %} Менеджер {% endblock %}
+{% block back%}<a href="{% url 'home' %}">Назад</a>{% endblock%}
 
 {% block main %}
 <h1>Cистема учёта товаров</h1>
@@ -22,5 +23,3 @@
 		title="Генерация отчетов о состоянии склада (сколько товаров есть)">Товары на складе</button>
 </div>
 {% endblock %}
-
-{% block back%}<a href="{% url 'home' %}">Назад</a>{% endblock%}

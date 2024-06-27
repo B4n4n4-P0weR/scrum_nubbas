@@ -1,5 +1,6 @@
 {% extends 'template 2.html' %}
 {% block title %} Товары в торговом помещении {% endblock %}
+{% block back%}<a href="{% url 'seller' %}">Назад</a>{% endblock%}
 
 {% block main %}
     {% if productsInStock|length > 0 %}
