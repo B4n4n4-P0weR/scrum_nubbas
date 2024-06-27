@@ -102,6 +102,7 @@ body {
 }
 
 .search-field {
+    width: 600px;
     flex: 1;
     padding: 10px;
     font-size: 16px;
@@ -116,6 +117,16 @@ body {
     border: none;
     padding: 10px 20px;
     border-radius: 4px 4px 4px 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+.search-button {
+    font-size: 18px;
+    background-color: #c1a56d;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 0px 4px 4px 0px;
     cursor: pointer;
     text-transform: uppercase;
 }

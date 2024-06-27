@@ -8,6 +8,14 @@
         <div class="content-container">
             <button class="one-button-container" onclick="location.href='{% url 'product_add' %}'">Добавить товар</button>
         </div>
+
+        <div class="content-container">
+            <form method="GET" action="{% url 'product_list' %}">
+                <input type="text" name="q" placeholder="Поиск товаров..." required class="search-field">
+                <button class="search-button" type="submit">Поиск</button>
+            </form>
+        </div>
+
         <div class="content-container">
         {% if products|length > 0 %}
             <h2 class="content-title">Товары</h2>

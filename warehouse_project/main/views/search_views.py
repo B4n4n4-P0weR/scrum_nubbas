@@ -67,3 +67,12 @@ def sale_detail(request, sale_number):
 def get_sale(request, sale_number):
     sale_number = request.GET.get("sale_number")
     return redirect("sale_detail", sale_number=sale_number)
+
+
+def product_list(request):
+    query = request.GET.get('q')
+    if query:
+        products = Product.objects.filter(title__icontains=query) | Product.objects.filter(manufacturer__icontains=query)
+    else:
+        products = Product.objects.all()
+    return render(request, 'product list.html', {'products': products})
