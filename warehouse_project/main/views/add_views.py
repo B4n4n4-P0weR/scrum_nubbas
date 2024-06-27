@@ -198,7 +198,7 @@ def save_shipment_content(formset, shipment):
         content_of_shipment: ContentOfShipment = form.save(commit=False)
         content_of_shipment.shipmentId = shipment
 
-        stock = ProductsInStock.objects.get(
+        stock = ProductsInStock.objects.get_or_create(
             productId=content_of_shipment.productId, warehouse=True
         )
         if content_of_shipment.amount <= stock.amount:
