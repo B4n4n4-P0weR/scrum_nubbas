@@ -10,6 +10,13 @@
         <div class="content-container">
         {% if sales|length > 0 %}
             <h2 class="content-title">История продаж</h2>
+            <button class="one-button-container" onclick="location.href='{% url 'sales_list' %}?order_by={% if order_by == 'asc' %}desc{% else %}asc{% endif %}'">
+                {% if order_by == 'asc' %}
+                    Сортировать по убыванию
+                {% else %}
+                    Сортировать по возрастанию
+                {% endif %}
+            </button>
             <div class="content">
                 {% for sale in sales %}
                     <div class="item">

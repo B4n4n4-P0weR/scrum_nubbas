@@ -21,6 +21,13 @@
         <div class="content-container">
         {% if supplies|length > 0 %}
             <h2 class="content-title">История поставок</h2>
+            <button class="one-button-container" onclick="location.href='{% url 'supplies_list' %}?order_by={% if order_by == 'asc' %}desc{% else %}asc{% endif %}'">
+                {% if order_by == 'asc' %}
+                    Сортировать по убыванию
+                {% else %}
+                    Сортировать по возрастанию
+                {% endif %}
+            </button>
             <div class="content">
                 {% for supply in supplies %}
                     <div class="item">

@@ -22,6 +22,13 @@
         {% if shipments|length > 0 %}
         <div class="content-container">
             <h2 class="content-title">История отгрузок</h2>
+            <button class="one-button-container" onclick="location.href='{% url 'shipment_list' %}?order_by={% if order_by == 'asc' %}desc{% else %}asc{% endif %}'">
+                {% if order_by == 'asc' %}
+                    Сортировать по убыванию
+                {% else %}
+                    Сортировать по возрастанию
+                {% endif %}
+            </button>
             <div class="content">
                 {% for shipment in shipments %}
                     <div class="item">
