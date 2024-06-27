@@ -1,8 +1,8 @@
-{% extends 'templet list.html' %}
-{% block title %} Список продаж {% endblock %}
+{% extends 'template 2.html' %}
+{% block title %} Продажи {% endblock %}
 
 {% block main %}
-    <h1 class="header">Список продаж</h1>
+    <h1 class="header">Продажи</h1>
     <div class="center-container">
         <div class="content-container">
             <button class="one-button-container" onclick="location.href='{% url 'sales_add' %}'">Добавить продажу</button>
@@ -25,6 +25,5 @@
     </div>
     {% else %}
             <h2 class="empty-title">Список продаж пуст</h2>
-    
     {% endif %}
 {% endblock %}

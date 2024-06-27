@@ -2,20 +2,12 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    # главные экраны
-    path('', views.home, name='home'),
-    path('sales/', views.sales, name='sales'),
-    path('supplies/', views.supplies, name='supplies'),
-    path('reports/', views.reports, name='reports'),
-
     # главные экраны vr2
+    path('', views.home, name='home'),
     path('seller/', views.seller, name='seller'),
     path('manager/', views.manager, name='manager'),
     path('storekeeper/', views.storekeeper, name='storekeeper'),
 
-
-    # поиск
-    path('search/<str:search_type>/', views.search, name='search'),
     # получение информации по номеру при поиске
     path('supplies/<int:supply_number>/', views.supply_detail, name='supply_detail'),
     path('get_supply/', views.get_supply, name='get_supply'),

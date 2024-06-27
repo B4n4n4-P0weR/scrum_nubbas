@@ -1,27 +1,20 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Добавление поставщика</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
-</head>
-<body>
-    <div class="navbar">
-        <a href="{% url 'supplies' %}">Назад</a>
-        <a href="{% url 'sales' %}">Продажи</a>
-        <a href="{% url 'supplies' %}">Поставки</a>
-        <a href="{% url 'reports' %}">Отчёты</a>
+{% extends 'template 2.html' %}
+{% block title %} Список поставщиков {% endblock %}
+
+{% block main %}
+    <h1 class="header">Добавить поставщика</h1>
+    <div class="center-container">
+            <div class="content-container">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="button" type="submit">Добавить</button>
+                </form>
+            </div>
+            {% if result %}
+                <div class="content-container">
+                    {{ result }}
+                </div>
+            {% endif %}
     </div>
-    <h1>Добавить поставщика</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="confirm_button" type="submit">Добавить</button>
-        {% if result %}
-            <br>{{ result }}
-        {% endif %}
-    </form>
-</body>
-</html>
+{% endblock %}

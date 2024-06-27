@@ -1,16 +1,20 @@
-{% extends 'templet.html' %}
+{% extends 'template 2.html' %}
 {% block title %} Добавление товара {% endblock %}
 
 {% block main %}
-    <h1>Добавить товар</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <div class="button-container">
-        <button class="button" type="submit">Добавить товар</button>
-        {% if result %}
-            <br>{{ result }}
-        {% endif %}
-        </div>
-    </form>
+    <h1 class="header">Добавить товар</h1>
+    <div class="center-container">
+            <div class="content-container">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="button" type="submit">Добавить</button>
+                </form>
+            </div>
+            {% if result %}
+                <div class="content-container">
+                    {{ result }}
+                </div>
+            {% endif %}
+    </div>
 {% endblock %}
