@@ -162,10 +162,11 @@ h1 {
 <body>
     <div class="sidebar">
         <a href="{% url 'home' %}">Главная</a>
+        {% block back%}{% endblock%}
         <a href="{% url 'seller' %}">Продавец</a>
         <a href="{% url 'manager' %}">Менеджер</a>
         <a href="{% url 'storekeeper' %}">Кладовщик</a>
-        {% block back%}{% endblock%}
+
     </div>
     <div class="main">
         {% block main%}
