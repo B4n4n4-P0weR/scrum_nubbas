@@ -1,5 +1,14 @@
 {% extends 'template 2.html' %}
 {% block title %} Товары на складе {% endblock %}
+{% block back %}
+    {% if request.GET.backurl == 'm' %}
+        <a href="{% url 'manager' %}">Назад</a>
+    {% elif request.GET.backurl == 'sk' %}
+        <a href="{% url 'storekeeper' %}">Назад</a>
+    {% else %}
+        <a href="{% url 'home' %}">Назад</a>
+    {% endif %}
+{% endblock %}
 
 {% block main %}
     {% if productsInStock|length > 0 %}

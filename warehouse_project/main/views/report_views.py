@@ -48,8 +48,13 @@ def report_sold_stuff(request):
 
 
 def report_stored_stuff(request):
+    backurl = request.GET.get('role', '')
     productsInStock = ProductsInStock.objects.filter(warehouse=True)
-    return render(request, 'report stored stuff.html', {'productsInStock': productsInStock})
+    context = {
+        'bu': backurl,  # Добавлено, чтобы передавать URL возврата
+        'productsInStock': productsInStock
+    }
+    return render(request, 'report stored stuff.html', context)
 
 
 def report_saleroom_stuff(request):

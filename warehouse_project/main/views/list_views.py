@@ -9,7 +9,7 @@ def product_list(request):
 
 
 def sales_list(request):
-    order_by = request.GET.get('order_by', 'desc')  # Получаем параметр сортировки из запроса
+    order_by = request.GET.get('order_by', 'desc')
     if order_by == 'asc':
         sales = Sale.objects.all().order_by('-id')
     else:
@@ -23,16 +23,22 @@ def supplier_list(request):
 
 
 def supplies_list(request):
-    order_by = request.GET.get('order_by', 'desc')  # Получаем параметр сортировки из запроса
+    backurl = request.GET.get('role', '')
+    order_by = request.GET.get('order_by', 'desc')
     if order_by == 'asc':
         supplies = Supply.objects.all().order_by('id')
     else:
         supplies = Supply.objects.all().order_by('-id')
-    return render(request, 'supplies list.html', {'supplies': supplies, 'order_by': order_by})
+    context = {
+        'bu': backurl,  # Добавлено, чтобы передавать URL возврата
+        'supplies': supplies,
+        'order_by': order_by
+    }
+    return render(request, 'supplies list.html', context)
 
 
 def shipment_list(request):
-    order_by = request.GET.get('order_by', 'desc')  # Получаем параметр сортировки из запроса
+    order_by = request.GET.get('order_by', 'desc')
     if order_by == 'asc':
         shipment = Shipment.objects.all().order_by('id')
     else:
