@@ -6,6 +6,9 @@ body {
     display: flex;
     flex-direction: column;
 }
+.main{
+    margin-bottom: 100px;
+}
 .sidebar {
     display: flex;
     flex-direction: column;
