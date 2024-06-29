@@ -5,20 +5,19 @@
     
     <h1 class="header">Список отгрузок</h1>
     <div class="center-container">
-        {% if shipments|length > 0 %}
-        <div class="content-container">
-            <h2 class="content-title">Поиск отгрузки</h2>
-            <div class="search-container">
-                <form action="{% url 'get_shipment' %}" method="get" class="search-form">
-                    <input type="text" name="shipment_number" placeholder="Введите номер отгрузки" required class="search-field">
-                    <button class="button">Поиск</button>
-                </form>
-            </div>
-        </div>
-        {% endif %}
         <div class="content-container">
             <button class="one-button-container" onclick="location.href='{% url 'shipment_add' %}'">Добавить отгрузку</button>
         </div>
+
+        {% if shipments|length > 0 %}
+            <div class="content-container">
+                <form action="{% url 'get_shipment' %}" method="get">
+                    <input type="text" name="shipment_number" placeholder="Поиск отгрузки по номеру" required class="search-field">
+                    <button class="search-button" type="submit">Поиск</button>
+                </form>
+            </div>
+        {% endif %}
+
         {% if shipments|length > 0 %}
         <div class="content-container">
             <h2 class="content-title">История отгрузок</h2>

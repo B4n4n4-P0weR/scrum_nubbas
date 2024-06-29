@@ -10,12 +10,14 @@
             <button class="one-button-container" onclick="location.href='{% url 'product_add' %}'">Добавить товар</button>
         </div>
 
-        <div class="content-container">
-            <form method="GET" action="{% url 'product_list' %}">
-                <input type="text" name="q" placeholder="Поиск товаров..." class="search-field">
-                <button class="search-button" type="submit">Поиск</button>
-            </form>
-        </div>
+        {% if products|length > 0 %}
+            <div class="content-container">
+                <form method="GET" action="{% url 'product_list' %}">
+                    <input type="text" name="q" placeholder="Поиск товаров по названию" class="search-field">
+                    <button class="search-button" type="submit">Поиск</button>
+                </form>
+            </div>
+        {% endif %}
 
         <div class="content-container">
         {% if products|length > 0 %}
@@ -32,8 +34,8 @@
                 {% endfor %}
             </div>
         </div>
+        {% else %}
+            <h2 class="empty-title">Список товаров пуст</h2>
+        {% endif %}
     </div>
-    {% else %}
-    <h2 class="empty-title">Список товаров пуст</h2>
-    {% endif %}
 {% endblock %}

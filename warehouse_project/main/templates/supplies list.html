@@ -13,22 +13,21 @@
 {% block main %}
     <h1 class="header">Список поставок</h1>
     <div class="center-container">
-    {% if supplies|length > 0 %}
-        <div class="content-container">
-            <h2 class="content-title">Поиск поставки</h2>
-            <div class="search-container">
-                <form action="{% url 'get_supply' %}" method="get" class="search-form">
-                    <input type="text" name="supply_number" placeholder="Введите номер поставки" required class="search-field">
-                    <button class="button">Поиск</button>
+        {% if request.GET.bu == 'm' %}
+                <div class="content-container">
+                    <button class="one-button-container" onclick="location.href='{% url 'supplies_add' %}'">Добавить поставку</button>
+                </div>
+        {% endif %}
+
+        {% if supplies|length > 0 %}
+            <div class="content-container">
+                <form action="{% url 'get_supply' %}" method="get">
+                    <input type="text" name="supply_number" placeholder="Поиск поставки по номеру" required class="search-field">
+                    <button class="search-button" type="submit">Поиск</button>
                 </form>
             </div>
-        </div>
         {% endif %}
-        {% if request.GET.bu == 'm' %}
-            <div class="content-container">
-                <button class="one-button-container" onclick="location.href='{% url 'supplies_add' %}'">Добавить поставку</button>
-            </div>
-        {% endif %}
+
         <div class="content-container">
         {% if supplies|length > 0 %}
             <h2 class="content-title">История поставок</h2>
