@@ -9,9 +9,7 @@ from django.db.models import Sum
 def supply_detail(request, supply_number, result=""):
     supply = Supply.objects.get(pk=supply_number)
     supply_content = ContentOfSupply.objects.filter(supplyId=supply_number)
-    # supply_content_sum = supply_content.aggregate(
-    #     total_price=Sum(F("productId__price") * F("amount"))
-    # )["total_price"]
+
     supply_content_sum = 0
     for content in supply_content:
         supply_content_sum += content.amount * content.price_one
@@ -34,9 +32,6 @@ def get_supply(request):
 def shipment_detail(request, shipment_number, result=""):
     shipment = Shipment.objects.get(pk=shipment_number)
     shipment_content = ContentOfShipment.objects.filter(shipmentId=shipment_number)
-    # shipment_content_sum = shipment_content.aggregate(
-    #     total_price=Sum(F("productId__price") * F("amount"))
-    # )["total_price"]
 
     context = {
         "shipment_number": shipment_number,
@@ -55,21 +50,24 @@ def get_shipment(request):
 def sale_detail(request, sale_number):
     sale = Sale.objects.get(pk=sale_number)
     sale_contents = SaleContent.objects.filter(sale=sale)
-    # sale_sum = sale_contents.aggregate(
-    #     total_price=Sum(F("product__price") * F("amount"))
-    # )["total_price"]
     sale_sum = 0
     for content in sale_contents:
         sale_sum += content.price_one * content.amount
-    return render(request, "sale one.html", {"sale": sale, "sale_contents": sale_contents, "total": sale_sum})
+    context = {
+        "sale_number": sale_number,
+        "sale": sale,
+        "sale_contents": sale_contents,
+        "total": sale_sum
+    }
+    return render(request, "sale one.html", context)
 
 
-def get_sale(request, sale_number):
+def get_sale(request):
     sale_number = request.GET.get("sale_number")
     return redirect("sale_detail", sale_number=sale_number)
 
 
-def product_list(request):
+def get_product(request):
     query = request.GET.get('q')
     if query:
         products = Product.objects.filter(title__icontains=query) | Product.objects.filter(manufacturer__icontains=query)

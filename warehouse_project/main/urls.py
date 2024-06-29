@@ -12,13 +12,13 @@ urlpatterns = [
     path('supplies/<int:supply_number>/', views.supply_detail, name='supply_detail'),
     path('get_supply/', views.get_supply, name='get_supply'),
     path('sales/<int:sale_number>/', views.sale_detail, name='sale_detail'),
-    path('get_sale/<int:sale_number>', views.sale_detail, name='get_sale'),
+    path('get_sale/', views.get_sale, name='get_sale'),
     path('shipment/<int:shipment_number>/', views.shipment_detail, name='shipment_detail'),
     path('get_shipment/', views.get_shipment, name='get_shipment'),
 
     # товары
     path('product/add/', views.product_add, name='product_add'),
-    path('product/list/', views.product_list, name='product_list'),
+    path('product/list/', views.get_product, name='product_list'),
     # продажи
     path('sales/add/', views.sales_add, name='sales_add'),
     path('sales/list/', views.sales_list, name='sales_list'),

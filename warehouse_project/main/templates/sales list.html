@@ -8,30 +8,40 @@
         <div class="content-container">
             <button class="one-button-container" onclick="location.href='{% url 'sales_add' %}'">Добавить продажу</button>
         </div>
-        <div class="content-container">
+
         {% if sales|length > 0 %}
-            <h2 class="content-title">История продаж</h2>
-            <button class="one-button-container" onclick="location.href='{% url 'sales_list' %}?order_by={% if order_by == 'asc' %}desc{% else %}asc{% endif %}'">
-                {% if order_by == 'asc' %}
-                    Сортировать по убыванию
-                {% else %}
-                    Сортировать по возрастанию
-                {% endif %}
-            </button>
-            <div class="content">
-                {% for sale in sales %}
-                    <div class="item">
-                        <div class="info">
-                            <div class="id">№ {{ sale.id }}</div>
-                            <div class="dates">{{ sale.saleDate }}</div>
-                        </div>
-                           <button class="button" onclick="location.href='{% url 'sale_detail' sale_number=sale.id %}'">Открыть</button>
-                    </div>
-                {% endfor %}
+            <div class="content-container">
+                <form action="{% url 'get_sale' %}" method="get">
+                    <input type="text" name="sale_number" placeholder="Поиск продажи по номеру" required class="search-field">
+                    <button class="search-button" type="submit">Поиск</button>
+                </form>
             </div>
-        </div>
-    </div>
-    {% else %}
+        {% endif %}
+
+        {% if sales|length > 0 %}
+            <div class="content-container">
+                <h2 class="content-title">История продаж</h2>
+                <button class="one-button-container" onclick="location.href='{% url 'sales_list' %}?order_by={% if order_by == 'asc' %}desc{% else %}asc{% endif %}'">
+                    {% if order_by == 'asc' %}
+                        Сортировать по убыванию
+                    {% else %}
+                        Сортировать по возрастанию
+                    {% endif %}
+                </button>
+                <div class="content">
+                    {% for sale in sales %}
+                        <div class="item">
+                            <div class="info">
+                                <div class="id">№ {{ sale.id }}</div>
+                                <div class="dates">{{ sale.saleDate }}</div>
+                            </div>
+                               <button class="button" onclick="location.href='{% url 'sale_detail' sale_number=sale.id %}'">Открыть</button>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% else %}
             <h2 class="empty-title">Список продаж пуст</h2>
-    {% endif %}
+        {% endif %}
+    </div>
 {% endblock %}
