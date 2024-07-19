@@ -7,7 +7,6 @@ def home(request):
     return render(request, "home.html")
 
 
-# vr 2
 def seller(request):
     return render(request, "seller.html")
 
