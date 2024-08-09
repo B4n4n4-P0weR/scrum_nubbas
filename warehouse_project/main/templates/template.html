@@ -5,15 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title%}{% endblock%}</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
+<!--    <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <style>
-        body {
+body {
     display: flex;
     flex-direction: column;
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #f2f4f3;
+    background-color: white;
     color: #333;
     min-height: 100vh;
     box-sizing: border-box;
@@ -29,6 +29,11 @@
     box-sizing: border-box;
     position: fixed;
     top: 0;
+    /*left: -150px;*/
+    /*transition: left 0.3s;*/
+}
+
+.sidebar:hover {
     left: 0;
 }
 
@@ -77,25 +82,69 @@ h1 {
 }
 
 .button {
-  display: inline-block;
-  margin: 50px; /* отступ между кнопками */
-  font-size: 1.5em; /* увеличиваем размер шрифта */
-  padding: 20px 40px;
-  background-color: #c1a56d;
-  color: white;
-  border-radius: 10px;
-  text-decoration: none;
+    display: inline-block;
+    margin: 50px; /* отступ между кнопками */
+    font-size: 1.5em; /* увеличиваем размер шрифта */
+    padding: 20px 40px;
+    background-color: #c1a56d;
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.main-button {
+    margin: 50px; /* отступ между кнопками */
+    font-size: 1.5em; /* увеличиваем размер шрифта */
+    padding: 20px 40px;
+    background-color: #FED12E;
+    color: #480A04;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.storekeeper-button {
+    margin: 50px; /* отступ между кнопками */
+    font-size: 1.5em; /* увеличиваем размер шрифта */
+    padding: 18px 30px;
+    background-color: #FED12E;
+    color: #480A04;
+    border-radius: 50px;
+    border-width: 0;
+    text-decoration: none;
+}
+
+.manager-button {
+    margin: 50px; /* отступ между кнопками */
+    font-size: 1.5em; /* увеличиваем размер шрифта */
+    padding: 18px 30px;
+    background-color: #0B583B;
+    color: #CDF545;
+    border-radius: 50px;
+    border-width: 0;
+    text-decoration: none;
+}
+
+.saller-button {
+    margin: 50px; /* отступ между кнопками */
+    font-size: 1.5em; /* увеличиваем размер шрифта */
+    padding: 18px 30px;
+    background-color: #1E1D19;
+    color: #EEE4CA;
+    border-radius: 50px;
+    border-width: 0;
+    text-decoration: none;
 }
 
 .tittle-button {
-  display: inline-block;
-  margin: 50px; /* отступ между кнопками */
-  font-size: 1.5em; /* увеличиваем размер шрифта */
-  padding: 20px 40px;
-  background-color: #c1a56d;
-  color: white;
-  border-radius: 10px;
-  text-decoration: none;
+    display: inline-block;
+    margin: 50px; /* отступ между кнопками */
+    font-size: 1.5em; /* увеличиваем размер шрифта */
+    padding: 20px 40px;
+    color: #E7791C;
+    border-width: 2px;
+    border-color: #E7791C;
+    border-radius: 10px;
+    text-decoration: none;
 }
 .button:hover {
     background-color: #b39957;
@@ -118,12 +167,12 @@ h1 {
     flex-direction: column;
     align-items: flex-start;
     position: fixed;
-    transition: bottom 0.3s;
-    bottom: -155px;
+    /*transition: bottom 0.3s;*/
+    /*bottom: -155px;*/
 }
 
 .footer:hover {
-    bottom: 0;
+    /*bottom: 0;*/
 }
 
 
@@ -142,7 +191,7 @@ h1 {
 }
 
 .footer a {
-    color: #007bff;
+    color: #dfdfdf;
     text-decoration: none;
     margin: 3px 0;
 }
@@ -152,12 +201,14 @@ h1 {
 }
 
 .scrum-nibbas {
+    color: #666666;
     position: absolute;
     bottom: 10px;
     right: 20px;
     font-size: 14px;
 }
-    </style>
+
+</style>
 </head>
 <body>
     <div class="sidebar">
@@ -166,40 +217,39 @@ h1 {
         <a href="{% url 'seller' %}">Продавец</a>
         <a href="{% url 'manager' %}">Менеджер</a>
         <a href="{% url 'storekeeper' %}">Кладовщик</a>
-
     </div>
     <div class="main">
         {% block main%}
         {% endblock%}
     </div>
     
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-column">
-                <p><b>Продажи</b></p>
-                <a href="{% url 'sales_list' %}">Список продаж</a>
-                <a href="{% url 'shipment_list' %}">Список отгрузок</a>
-                <a href="{% url 'sales_add' %}">Добавить продажу</a>
-                <a href="{% url 'shipment_add' %}">Добавить отгрузку</a>
-            </div>
-            <div class="footer-column">
-                <p><b>Поставки</b></p>
-                <a href="{% url 'product_list' %}">Список товаров</a>
-                <a href="{% url 'supplier_list' %}">Список поставщиков</a>
-                <a href="{% url 'supplies_list' %}">Список поставок</a>
-                <a href="{% url 'product_add' %}">Добавить товар</a>
-                <a href="{% url 'supplier_add' %}">Добавить поставщика</a>
-                <a href="{% url 'supplies_add' %}">Добавить поставку</a>
-            </div>
-            <div class="footer-column">
-                <p><b>Отчёты</b></p>
-                <a href="{% url 'report_needful_stuff' %}">Необходимость заказа</a>
-                <a href="{% url 'report_sold_stuff' %}">Проданные товары</a>
-                <a href="{% url 'report_stored_stuff' %}">Товары на складе</a>
-                <a href="{% url 'report_saleroom_stuff' %}">Товары в торговом помещении</a>
-            </div>
-        </div>
-        <p class="scrum-nibbas">Scrum nibbas</p>
-    </footer>
+<!--    <footer class="footer">-->
+<!--        <div class="footer-container">-->
+<!--            <div class="footer-column">-->
+<!--                <p><b>Продажи</b></p>-->
+<!--                <a href="{% url 'sales_list' %}">Список продаж</a>-->
+<!--                <a href="{% url 'shipment_list' %}">Список отгрузок</a>-->
+<!--                <a href="{% url 'sales_add' %}">Добавить продажу</a>-->
+<!--                <a href="{% url 'shipment_add' %}">Добавить отгрузку</a>-->
+<!--            </div>-->
+<!--            <div class="footer-column">-->
+<!--                <p><b>Поставки</b></p>-->
+<!--                <a href="{% url 'product_list' %}">Список товаров</a>-->
+<!--                <a href="{% url 'supplier_list' %}">Список поставщиков</a>-->
+<!--                <a href="{% url 'supplies_list' %}">Список поставок</a>-->
+<!--                <a href="{% url 'product_add' %}">Добавить товар</a>-->
+<!--                <a href="{% url 'supplier_add' %}">Добавить поставщика</a>-->
+<!--                <a href="{% url 'supplies_add' %}">Добавить поставку</a>-->
+<!--            </div>-->
+<!--            <div class="footer-column">-->
+<!--                <p><b>Отчёты</b></p>-->
+<!--                <a href="{% url 'report_needful_stuff' %}">Необходимость заказа</a>-->
+<!--                <a href="{% url 'report_sold_stuff' %}">Проданные товары</a>-->
+<!--                <a href="{% url 'report_stored_stuff' %}">Товары на складе</a>-->
+<!--                <a href="{% url 'report_saleroom_stuff' %}">Товары в торговом помещении</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <p class="scrum-nibbas">Scrum nibbas</p>-->
+<!--    </footer>-->
 </body>
 </html>

@@ -6,16 +6,11 @@
 <h1>Cистема учёта товаров</h1>
 <p>Менеджер</p>
 <div class="button-container">
-	<button class="button" onclick="location.href='{% url 'product_list' %}'">Товары</button>
-
-	<button class="button" onclick="location.href='{% url 'supplier_list' %}'">Поставщики</button>
-
-	<button class="button" onclick="location.href='{% url 'supplies_list' %}?bu=m'">Поставки</button>
-
-	<button class="button" onclick="location.href='{% url 'report_needful_stuff' %}'">Необходимость заказа</button>
-
-    <button class="button" onclick="location.href='{% url 'report_sold_stuff' %}'">Проданные товары</button>
-
-    <button class="button" onclick="location.href='{% url 'report_stored_stuff' %}?bu=m'">Товары на складе</button>
+	<button class="manager-button" onclick="location.href='{% url 'product_list' %}'">Товары</button>
+	<button class="manager-button" onclick="location.href='{% url 'supplier_list' %}'">Поставщики</button>
+	<button class="manager-button" onclick="location.href='{% url 'supplies_list' %}?bu=m'">Поставки</button>
+	<button class="manager-button" onclick="location.href='{% url 'report_needful_stuff' %}'">Необходимость заказа</button>
+    <button class="manager-button" onclick="location.href='{% url 'report_sold_stuff' %}'">Проданные товары</button>
+    <button class="manager-button" onclick="location.href='{% url 'report_stored_stuff' %}?bu=m'">Товары на складе</button>
 </div>
 {% endblock %}

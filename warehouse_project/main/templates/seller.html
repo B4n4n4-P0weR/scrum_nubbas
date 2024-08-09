@@ -6,9 +6,8 @@
 <h1>Cистема учёта товаров</h1>
 <p>Продавец</p>
 <div class="button-container">
-	<button class="button" onclick="location.href='{% url 'sales_list' %}'">Продажи</button>
-<!--	<button class="button" onclick="location.href='{% url 'sales_add' %}'">Добавить продажу</button>-->
-	<button class="button" onclick="location.href='{% url 'report_saleroom_stuff' %}'" 
+	<button class="saller-button" onclick="location.href='{% url 'sales_list' %}'">Продажи</button>
+	<button class="saller-button" onclick="location.href='{% url 'report_saleroom_stuff' %}'"
 	title="Генерация отчетов о состоянии торгового помещения (сколько товаров есть)">Товары в торговом помещении</button>
 </div>
 {% endblock %}

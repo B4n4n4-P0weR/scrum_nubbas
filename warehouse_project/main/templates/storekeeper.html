@@ -6,7 +6,7 @@
 <h1>Cистема учёта товаров</h1>
 <p>Кладовщик</p>
 <div class="button-container">
-	<button class="button" onclick="location.href='{% url 'shipment_list' %}'">Отгрузоки</button>
-	<button class="button" onclick="location.href='{% url 'report_stored_stuff' %}?bu=sk'">Товары на складе</button>
-	<button class="button" onclick="location.href='{% url 'supplies_list' %}?bu=sk'">Поставки</button></div>
+	<button class="storekeeper-button" onclick="location.href='{% url 'shipment_list' %}'">Отгрузоки</button>
+	<button class="storekeeper-button" onclick="location.href='{% url 'report_stored_stuff' %}?bu=sk'">Товары на складе</button>
+	<button class="storekeeper-button" onclick="location.href='{% url 'supplies_list' %}?bu=sk'">Поставки</button></div>
 {% endblock %}
